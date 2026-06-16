@@ -611,7 +611,9 @@ kbd{background:#eef2f7;border:1px solid var(--c-border);border-radius:5px;paddin
     <div class="block-task">
       <div class="block-label">✏ Aufgabe: Erstes Sortieren</div>
       <p>Ordnen Sie die folgenden Informationen aus der Situation einer Kategorie zu. Klicken Sie auf die passende Kategorie.</p>
-      <div id="sorting-task"></div>
+      <div id="sorting-task"><div class="form-group"><label><input type="checkbox" id="privacyConfirm"> Keine identifizierenden Falldaten</label></div>
+<div class="form-group"><label><input type="checkbox" id="sendConsent"> Online-Übermittlung zustimmen</label></div>
+</div>
       <div class="btn-row">
         <button class="btn btn-outline btn-sm" onclick="checkSorting()">Auswahl prüfen</button>
         <button class="btn btn-outline btn-sm" onclick="showSol('sol-sorting')">Musterlösung</button>
