@@ -1,1948 +1,415 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Band 2, Modul 1 - Rechtliche Grundorientierung | SOL Schulsozialarbeit Niedersachsen</title>
-<style>
-:root {
-  --c-bg: #f4f6f9;
-  --c-surface: #ffffff;
-  --c-primary: #2c5f8a;
-  --c-primary-light: #e8f0f8;
-  --c-secondary: #3a7d5e;
-  --c-secondary-light: #e6f4ee;
-  --c-accent: #d4860a;
-  --c-accent-light: #fdf3e3;
-  --c-danger: #c0392b;
-  --c-danger-light: #fdecea;
-  --c-warn: #e67e22;
-  --c-warn-light: #fef5e7;
-  --c-ok: #27ae60;
-  --c-ok-light: #e9f7ef;
-  --c-text: #1a1a2e;
-  --c-text-muted: #5a6a7a;
-  --c-border: #d0dae6;
-  --c-theory: #eaf1fb;
-  --c-theory-border: #2c5f8a;
-  --c-task: #e6f4ee;
-  --c-task-border: #3a7d5e;
-  --c-case: #fdf3e3;
-  --c-case-border: #d4860a;
-  --c-reflex: #f0ebf8;
-  --c-reflex-border: #7b5ea7;
-  --c-law: #f8f0e8;
-  --c-law-border: #8b5e3c;
-  --radius: 10px;
-  --shadow: 0 2px 12px rgba(44,95,138,0.09);
-  --shadow-lg: 0 4px 24px rgba(44,95,138,0.14);
-  --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body { font-family: var(--font); background: var(--c-bg); color: var(--c-text); line-height: 1.7; }
-a { color: var(--c-primary); }
-h1,h2,h3,h4 { line-height: 1.3; font-weight: 700; }
-p { margin-bottom: 0.85em; }
-p:last-child { margin-bottom: 0; }
-
-/* ── Layout ─────────────────────────────────────────── */
-.page-wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem 4rem; }
-
-/* ── Header ─────────────────────────────────────────── */
-.site-header {
-  background: var(--c-primary);
-  color: #fff;
-  padding: .75rem 1.5rem .85rem;
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.site-header-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: stretch; gap: .65rem; }
-.header-main { display: flex; align-items: center; gap: 1rem; width: 100%; min-width: 280px; }
-.header-form { display: flex; align-items: flex-end; gap: .5rem; width: 100%; max-width: 760px; }
-.header-field { flex: 1 1 170px; min-width: 145px; }
-.header-field label { color: #fff; font-size: .72rem; font-weight: 700; margin-bottom: .15rem; opacity: .95; }
-.header-field input { min-height: 36px; padding: .42rem .65rem; border-radius: 7px; border: 1.5px solid rgba(255,255,255,.45); font-size: .82rem; }
-.header-send-btn {
-  min-height: 36px; white-space: nowrap; padding: .45rem .85rem; border-radius: 7px;
-  border: 1.5px solid rgba(255,255,255,.5); background: var(--c-secondary); color: #fff;
-  font-weight: 800; font-size: .8rem; cursor: pointer;
-}
-.header-send-btn:hover { background: #2a5e44; }
-      .header-save-btn {
-        min-height: 36px; white-space: nowrap; padding: .45rem .85rem; border-radius: 7px;
-        border: 1.5px solid rgba(255,255,255,.5); background: rgba(255,255,255,.2); color: #fff;
-        font-weight: 800; font-size: .8rem; cursor: pointer;
-      }
-      .header-save-btn:hover { background: rgba(255,255,255,.3); }
-.header-status {
-  max-width: 1100px; margin: .4rem auto 0; padding: .35rem .6rem; border-radius: 7px;
-  font-size: .78rem; font-weight: 700; display: none;
-}
-.header-status.show { display: block; }
-.header-status.sf-ok { background: var(--c-ok-light); color: #155724; border: 1px solid var(--c-ok); }
-.header-consent { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; padding: .25rem 0 .1rem; }
-.header-consent label { color: #fff; font-size: .74rem; font-weight: 600; display: flex; align-items: center; gap: .4rem; cursor: pointer; opacity: .93; }
-.header-consent input[type=checkbox] { accent-color: #fff; width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; }
-.header-status.sf-warn { background: var(--c-warn-light); color: #7d5a00; border: 1px solid var(--c-warn); }
-.header-status.sf-err { background: var(--c-danger-light); color: #721c24; border: 1px solid var(--c-danger); }
-.header-badge {
-  background: rgba(255,255,255,.18);
-  border-radius: 6px;
-  padding: .2rem .7rem;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  white-space: nowrap;
-}
-.header-title { font-size: 1rem; font-weight: 600; }
-.header-sub { font-size: .78rem; opacity: .82; margin-top: .1rem; }
-
-/* ── Progress bar ────────────────────────────────────── */
-.progress-bar-wrap {
-  background: var(--c-surface);
-  border-bottom: 1px solid var(--c-border);
-  padding: .6rem 1.5rem;
-  position: sticky; top: var(--sticky-header-height, 96px); z-index: 90;
-}
-.progress-bar-inner { max-width: 860px; margin: 0 auto; }
-.progress-label { font-size: .78rem; color: var(--c-text-muted); margin-bottom: .3rem; display: flex; justify-content: space-between; }
-.progress-track { height: 8px; background: var(--c-border); border-radius: 99px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--c-primary), var(--c-secondary)); border-radius: 99px; transition: width .5s ease; }
-
-/* ── Karten ──────────────────────────────────────────── */
-.card {
-  background: var(--c-surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin: 1.4rem 0;
-  overflow: hidden;
-  border: 1px solid var(--c-border);
-}
-.card-header {
-  padding: 1rem 1.4rem .8rem;
-  display: flex; align-items: center; gap: .7rem;
-  cursor: pointer; user-select: none;
-}
-.card-header:hover { background: var(--c-primary-light); }
-.card-icon { font-size: 1.4rem; flex-shrink: 0; }
-.card-title { font-size: 1.05rem; font-weight: 700; flex: 1; }
-.card-status { font-size: .75rem; padding: .2rem .6rem; border-radius: 99px; font-weight: 600; white-space: nowrap; }
-.status-open { background: #eee; color: #666; }
-.status-active { background: var(--c-warn-light); color: var(--c-warn); }
-.status-done { background: var(--c-ok-light); color: var(--c-ok); }
-.card-toggle { font-size: .9rem; color: var(--c-text-muted); transition: transform .3s; }
-.card.open .card-toggle { transform: rotate(180deg); }
-.card-body { display: none; padding: 0 1.4rem 1.4rem; }
-.card.open .card-body { display: block; }
-.card-locked .card-body { display: none !important; }
-.card-locked .card-header { opacity: .55; cursor: not-allowed; }
-.card-locked .card-header:hover { background: none; }
-
-/* ── Block-Typen ─────────────────────────────────────── */
-.block-theory { background: var(--c-theory); border-left: 4px solid var(--c-theory-border); border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
-.block-task   { background: var(--c-task);   border-left: 4px solid var(--c-task-border);   border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
-.block-case   { background: var(--c-case);   border-left: 4px solid var(--c-case-border);   border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
-.block-reflex { background: var(--c-reflex); border-left: 4px solid var(--c-reflex-border); border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
-.block-law    { background: var(--c-law);    border-left: 4px solid var(--c-law-border);    border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; }
-.block-solution { background: #f0faf5; border-left: 4px solid var(--c-ok); border-radius: 6px; padding: 1rem 1.2rem; margin: 1rem 0; display: none; }
-.block-solution.visible { display: block; }
-.block-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .5rem; opacity: .7; }
-
-/* ── Buttons ─────────────────────────────────────────── */
-.btn {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .65rem 1.3rem; border-radius: 8px; border: none;
-  font-family: var(--font); font-size: .9rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; text-decoration: none;
-  touch-action: manipulation; min-height: 44px;
-}
-.btn-primary   { background: var(--c-primary); color: #fff; }
-.btn-primary:hover   { background: #1e4a70; }
-.btn-secondary { background: var(--c-secondary); color: #fff; }
-.btn-secondary:hover { background: #2a5e44; }
-.btn-outline   { background: transparent; color: var(--c-primary); border: 2px solid var(--c-primary); }
-.btn-outline:hover   { background: var(--c-primary-light); }
-.btn-warn      { background: var(--c-warn); color: #fff; }
-.btn-danger    { background: var(--c-danger); color: #fff; }
-.btn-sm { padding: .4rem .9rem; font-size: .82rem; min-height: 36px; }
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
-
-/* ── Formulare ───────────────────────────────────────── */
-input[type=text], input[type=email], textarea, select {
-  width: 100%; border: 1.5px solid var(--c-border); border-radius: 8px;
-  padding: .6rem .9rem; font-family: var(--font); font-size: .9rem;
-  color: var(--c-text); background: #fff;
-  transition: border-color .2s;
-}
-input[type=text]:focus, input[type=email]:focus, textarea:focus, select:focus {
-  border-color: var(--c-primary); outline: none; box-shadow: 0 0 0 3px rgba(44,95,138,.12);
-}
-textarea { resize: vertical; min-height: 100px; }
-label { font-size: .88rem; font-weight: 600; display: block; margin-bottom: .3rem; color: var(--c-text); }
-.form-group { margin-bottom: 1rem; }
-
-/* ── Quiz / MC ───────────────────────────────────────── */
-.option-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin: .7rem 0; }
-.option-item {
-  display: flex; align-items: flex-start; gap: .7rem;
-  background: #f7f9fc; border: 1.5px solid var(--c-border);
-  border-radius: 8px; padding: .7rem 1rem; cursor: pointer;
-  transition: all .18s; font-size: .92rem;
-}
-.option-item:hover { border-color: var(--c-primary); background: var(--c-primary-light); }
-.option-item.selected { border-color: var(--c-primary); background: var(--c-primary-light); }
-.option-item.correct  { border-color: var(--c-ok);    background: var(--c-ok-light);    color: #155724; }
-.option-item.wrong    { border-color: var(--c-danger); background: var(--c-danger-light); color: #721c24; }
-.option-item input[type=radio] { margin-top: .15rem; flex-shrink: 0; accent-color: var(--c-primary); }
-.feedback-box { margin-top: .7rem; padding: .7rem 1rem; border-radius: 8px; font-size: .88rem; line-height: 1.5; }
-.fb-ok   { background: var(--c-ok-light);     color: #155724; border-left: 3px solid var(--c-ok); }
-.fb-warn { background: var(--c-warn-light);   color: #7d5a00; border-left: 3px solid var(--c-warn); }
-.fb-err  { background: var(--c-danger-light); color: #721c24; border-left: 3px solid var(--c-danger); }
-
-/* ── Ampel ───────────────────────────────────────────── */
-.ampel-grid { display: flex; flex-direction: column; gap: .7rem; margin: .8rem 0; }
-.ampel-item { background: #f7f9fc; border: 1.5px solid var(--c-border); border-radius: 8px; padding: .8rem 1rem; }
-.ampel-text { font-size: .92rem; margin-bottom: .6rem; font-weight: 500; }
-.ampel-btns { display: flex; flex-wrap: wrap; gap: .5rem; }
-.ampel-btn {
-  padding: .4rem 1rem; border-radius: 99px; border: 2px solid transparent;
-  font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .18s; min-height: 36px;
-}
-.ampel-btn[data-val="gruen"]  { border-color: var(--c-ok);     color: var(--c-ok); }
-.ampel-btn[data-val="gelb"]   { border-color: var(--c-warn);   color: var(--c-warn); }
-.ampel-btn[data-val="rot"]    { border-color: var(--c-danger);  color: var(--c-danger); }
-.ampel-btn.active[data-val="gruen"]  { background: var(--c-ok);    color: #fff; }
-.ampel-btn.active[data-val="gelb"]   { background: var(--c-warn);  color: #fff; }
-.ampel-btn.active[data-val="rot"]    { background: var(--c-danger); color: #fff; }
-.ampel-feedback { margin-top: .5rem; font-size: .82rem; padding: .4rem .7rem; border-radius: 6px; display: none; }
-.ampel-feedback.show { display: block; }
-
-/* ── Kompass ─────────────────────────────────────────── */
-.kompass-wrap { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1rem 0; }
-.kompass-step {
-  flex: 1 1 150px;
-  background: var(--c-primary-light);
-  border: 2px solid var(--c-primary);
-  border-radius: var(--radius);
-  padding: .8rem 1rem;
-  text-align: center;
-}
-.kompass-nr { font-size: 1.4rem; font-weight: 800; color: var(--c-primary); }
-.kompass-label { font-size: .82rem; font-weight: 700; margin: .2rem 0; color: var(--c-primary); }
-.kompass-desc { font-size: .78rem; color: var(--c-text-muted); }
-
-/* ── Rollenmatrix ────────────────────────────────────── */
-.role-matrix { overflow-x: auto; margin: 1rem 0; }
-.role-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-.role-table th { background: var(--c-primary); color: #fff; padding: .55rem .8rem; text-align: left; }
-.role-table td { padding: .5rem .8rem; border-bottom: 1px solid var(--c-border); vertical-align: top; }
-.role-table tr:nth-child(even) td { background: #f5f7fa; }
-.role-chip {
-  display: inline-block; padding: .2rem .6rem; border-radius: 99px;
-  font-size: .75rem; font-weight: 600; margin: .15rem;
-  cursor: pointer; border: 1.5px solid transparent; transition: all .15s;
-}
-.chip-ssa   { background: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
-.chip-lk    { background: #dcfce7; color: #14532d; border-color: #86efac; }
-.chip-sl    { background: #fef3c7; color: #78350f; border-color: #fcd34d; }
-.chip-eltern{ background: #f3e8ff; color: #4c1d95; border-color: #c4b5fd; }
-.chip-ja    { background: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
-.chip-extern{ background: #e0f2fe; color: #0c4a6e; border-color: #7dd3fc; }
-
-/* ── Entscheidungsbaum ───────────────────────────────── */
-.tree-node {
-  background: var(--c-surface); border: 2px solid var(--c-primary);
-  border-radius: var(--radius); padding: 1rem 1.2rem; margin: .7rem 0;
-}
-.tree-question { font-weight: 600; margin-bottom: .7rem; font-size: .95rem; }
-.tree-options { display: flex; flex-direction: column; gap: .5rem; }
-.tree-opt {
-  padding: .6rem 1rem; background: var(--c-primary-light);
-  border: 1.5px solid var(--c-primary); border-radius: 8px;
-  cursor: pointer; font-size: .88rem; transition: all .18s;
-}
-.tree-opt:hover { background: var(--c-primary); color: #fff; }
-.tree-result {
-  display: none; margin-top: .7rem; padding: .8rem 1rem;
-  border-radius: 8px; font-size: .88rem; line-height: 1.6;
-}
-.tree-result.show { display: block; }
-
-/* ── Fehleranalyse ───────────────────────────────────── */
-.error-quote {
-  background: var(--c-danger-light); border-left: 4px solid var(--c-danger);
-  border-radius: 6px; padding: .8rem 1.2rem; margin: .7rem 0;
-  font-style: italic; color: #4a1a1a; font-size: .92rem;
-}
-
-/* ── Übersicht Bände ─────────────────────────────────── */
-.band-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .8rem; margin: 1rem 0; }
-.band-card {
-  background: var(--c-surface); border: 1.5px solid var(--c-border);
-  border-radius: var(--radius); padding: .8rem 1rem; position: relative;
-}
-.band-card.active { border-color: var(--c-primary); background: var(--c-primary-light); }
-.band-card.done   { border-color: var(--c-ok); background: var(--c-ok-light); }
-.band-nr { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
-.band-card.active .band-nr { color: var(--c-primary); }
-.band-card.done   .band-nr { color: var(--c-ok); }
-.band-card.active .band-title { color: var(--c-primary); }
-.band-title { font-size: .88rem; font-weight: 700; }
-.band-hint { font-size: .75rem; color: var(--c-text-muted); margin-top: .3rem; }
-.band-badge {
-  position: absolute; top: .5rem; right: .7rem;
-  font-size: .65rem; font-weight: 700; padding: .15rem .5rem;
-  border-radius: 99px;
-}
-.badge-done   { background: var(--c-ok);    color: #fff; }
-.badge-active { background: var(--c-primary); color: #fff; }
-.badge-future { background: #ddd; color: #666; }
-
-/* ── Gelingensnachweis ───────────────────────────────── */
-.quiz-counter { font-size: .82rem; color: var(--c-text-muted); margin-bottom: 1rem; }
-.quiz-question { margin-bottom: 1.4rem; }
-.quiz-q-text { font-weight: 600; font-size: .95rem; margin-bottom: .6rem; }
-.result-box {
-  background: var(--c-primary-light); border: 2px solid var(--c-primary);
-  border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-top: 1.2rem; text-align: center;
-  display: none;
-}
-.result-box.show { display: block; }
-.result-score { font-size: 2rem; font-weight: 800; color: var(--c-primary); }
-.result-label { font-size: 1rem; font-weight: 600; margin-top: .3rem; }
-.result-detail { font-size: .88rem; color: var(--c-text-muted); margin-top: .5rem; }
-
-/* ── Reflexion ───────────────────────────────────────── */
-.reflex-questions { display: flex; flex-direction: column; gap: 1rem; margin: .8rem 0; }
-.reflex-q { background: var(--c-reflex); border-radius: 8px; padding: .8rem 1rem; }
-.reflex-q-label { font-size: .85rem; font-weight: 600; margin-bottom: .5rem; color: #4c1d95; }
-
-/* ── Kompetenz-Check ─────────────────────────────────── */
-.kompe-item { display: flex; align-items: center; gap: .8rem; padding: .6rem 0; border-bottom: 1px solid var(--c-border); }
-.kompe-item:last-child { border-bottom: none; }
-.kompe-text { flex: 1; font-size: .88rem; }
-.kompe-rating { display: flex; gap: .3rem; }
-.kompe-star {
-  font-size: 1.3rem; cursor: pointer; color: #ccc; transition: color .15s;
-}
-.kompe-star.active { color: #f59e0b; }
-
-/* ── Section nav ─────────────────────────────────────── */
-.section-nav { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0; }
-.sec-btn {
-  padding: .35rem .8rem; border-radius: 99px; border: 1.5px solid var(--c-border);
-  background: var(--c-surface); font-size: .78rem; cursor: pointer; transition: all .18s;
-}
-.sec-btn:hover { border-color: var(--c-primary); color: var(--c-primary); }
-.sec-btn.done { background: var(--c-ok); color: #fff; border-color: var(--c-ok); }
-.sec-btn.active { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
-
-/* ── Datenschutz-Minifälle ───────────────────────────── */
-.privacy-case { background: #f7f9fc; border: 1.5px solid var(--c-border); border-radius: 8px; padding: .8rem 1rem; margin: .7rem 0; }
-.privacy-situation { font-size: .9rem; font-style: italic; margin-bottom: .6rem; color: #2c3e50; }
-.privacy-choices { display: flex; flex-direction: column; gap: .4rem; }
-.privacy-choice {
-  padding: .5rem .9rem; border-radius: 7px; border: 1.5px solid var(--c-border);
-  background: #fff; font-size: .85rem; cursor: pointer; transition: all .18s;
-  text-align: left;
-}
-.privacy-choice:hover { border-color: var(--c-primary); background: var(--c-primary-light); }
-.privacy-choice.correct { border-color: var(--c-ok); background: var(--c-ok-light); }
-.privacy-choice.wrong   { border-color: var(--c-danger); background: var(--c-danger-light); }
-
-/* ── Abschluss / Ergebnissicherung ──────────────────── */
-.summary-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; margin: .8rem 0; }
-.summary-list li { display: flex; align-items: flex-start; gap: .6rem; font-size: .9rem; }
-.summary-list li::before { content: '✦'; color: var(--c-primary); flex-shrink: 0; margin-top: .1rem; }
-.checklist { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin: .8rem 0; }
-.checklist li { display: flex; align-items: flex-start; gap: .6rem; font-size: .88rem; }
-.checklist li::before { content: '☐'; color: var(--c-primary); flex-shrink: 0; font-size: 1rem; }
-.status-field { min-height: 44px; padding: .6rem 1rem; border-radius: 8px; font-size: .88rem; font-weight: 600; margin-top: .7rem; display: none; }
-.status-field.show { display: block; }
-.sf-ok   { background: var(--c-ok-light);     color: #155724; border: 1px solid var(--c-ok); }
-.sf-warn { background: var(--c-warn-light);   color: #7d5a00; border: 1px solid var(--c-warn); }
-.sf-err  { background: var(--c-danger-light); color: #721c24; border: 1px solid var(--c-danger); }
-
-/* ── Vorwissenscheck ─────────────────────────────────── */
-.pre-item { background: #f7f9fc; border: 1.5px solid var(--c-border); border-radius: 8px; padding: .8rem 1rem; margin: .6rem 0; }
-.pre-statement { font-size: .92rem; margin-bottom: .6rem; font-weight: 500; }
-.pre-btns { display: flex; flex-wrap: wrap; gap: .5rem; }
-.pre-btn {
-  padding: .4rem .9rem; border-radius: 99px; border: 1.5px solid var(--c-border);
-  background: #fff; font-size: .82rem; cursor: pointer; transition: all .18s; min-height: 36px;
-}
-.pre-btn:hover { border-color: var(--c-primary); background: var(--c-primary-light); }
-.pre-btn.active { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
-.pre-feedback { display: none; margin-top: .5rem; font-size: .82rem; padding: .4rem .7rem; border-radius: 6px; }
-.pre-feedback.show { display: block; }
-
-/* ── Fallvignette Aufgaben ───────────────────────────── */
-.vignette-task { margin: .8rem 0; }
-.vignette-task-q { font-size: .9rem; font-weight: 600; margin-bottom: .5rem; }
-.textarea-labeled { position: relative; }
-.char-count { position: absolute; bottom: .3rem; right: .6rem; font-size: .72rem; color: var(--c-text-muted); }
-
-/* ── Sortieraufgabe ──────────────────────────────────── */
-.sort-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin: .7rem 0; }
-.sort-item {
-  background: var(--c-primary-light); border: 1.5px solid var(--c-primary);
-  border-radius: 8px; padding: .55rem .9rem; font-size: .88rem;
-  display: flex; align-items: center; gap: .6rem; cursor: grab;
-}
-.sort-item .sort-handle { color: var(--c-primary); font-size: 1rem; }
-.sort-item.dragging { opacity: .4; }
-
-/* ── Modul-Übersicht ─────────────────────────────────── */
-.module-list { display: flex; flex-direction: column; gap: .6rem; margin: .8rem 0; }
-.module-item {
-  background: var(--c-surface); border: 1.5px solid var(--c-border);
-  border-radius: 8px; padding: .7rem 1rem; display: flex; align-items: flex-start; gap: .8rem;
-}
-.module-item.active { border-color: var(--c-primary); background: var(--c-primary-light); }
-.module-nr { font-size: .75rem; font-weight: 700; color: var(--c-primary); white-space: nowrap; margin-top: .1rem; }
-.module-content .module-title { font-size: .9rem; font-weight: 700; }
-.module-content .module-desc { font-size: .8rem; color: var(--c-text-muted); margin-top: .2rem; }
-
-/* ── Util ────────────────────────────────────────────── */
-.mt1 { margin-top: .5rem; }
-.mt2 { margin-top: 1rem; }
-.mt3 { margin-top: 1.5rem; }
-.mb1 { margin-bottom: .5rem; }
-.text-muted { color: var(--c-text-muted); font-size: .85rem; }
-.text-small { font-size: .82rem; }
-.section-title { font-size: 1.2rem; color: var(--c-primary); margin: 1.8rem 0 .5rem; border-bottom: 2px solid var(--c-primary-light); padding-bottom: .4rem; }
-.intro-block { background: var(--c-primary-light); border-radius: var(--radius); padding: 1.2rem 1.4rem; margin: 1rem 0; border: 1px solid var(--c-primary); }
-.intro-block h2 { color: var(--c-primary); font-size: 1.15rem; margin-bottom: .5rem; }
-hr.divider { border: none; border-top: 1px solid var(--c-border); margin: 1.5rem 0; }
-.tag { display: inline-block; padding: .15rem .5rem; border-radius: 99px; font-size: .72rem; font-weight: 700; letter-spacing: .05em; }
-.tag-recht  { background: var(--c-law);   color: #5a3010; }
-.tag-ds     { background: #e0f2fe; color: #0c4a6e; }
-.tag-schutz { background: var(--c-warn-light); color: #7d5a00; }
-.tag-schnitt{ background: var(--c-task);   color: #1a5c3a; }
-.reset-bar { text-align: right; margin-bottom: .5rem; }
-
-@media (max-width: 600px) {
-  .header-main { min-width: 0; }
-  .header-form { flex-wrap: wrap; align-items: flex-end; max-width: none; }
-  .header-field { flex: 1 1 100%; }
-  .header-save-btn { width: 100%; justify-content: center; }
-        .header-send-btn { width: 100%; justify-content: center; }
-  .kompass-step { flex: 1 1 130px; }
-  .band-grid { grid-template-columns: 1fr 1fr; }
-  .btn { font-size: .85rem; padding: .6rem 1rem; }
-  .card-header { padding: .8rem 1rem; }
-  .card-body { padding: 0 1rem 1rem; }
-  .block-theory, .block-task, .block-case, .block-reflex, .block-law { padding: .8rem .9rem; }
-}
-
-/* OPTIMIERUNG 2026: Hochschulstandard, Barrierefreiheit, Bewertungslogik */
-.skip-link{
-  position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;
-  background:#fff;color:var(--c-primary);padding:.7rem 1rem;border:2px solid var(--c-primary);border-radius:8px;z-index:1000;
-}
-.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;box-shadow:var(--shadow-lg)}
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1rem 0}
-.meta-card{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:var(--radius);padding:.85rem 1rem}
-.meta-card b{display:block;color:var(--c-primary);font-size:.83rem;margin-bottom:.25rem}
-.meta-card span{font-size:.86rem;color:var(--c-text-muted)}
-.quality-rubric{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.86rem}
-.quality-rubric th{background:var(--c-primary);color:#fff;text-align:left;padding:.6rem .75rem}
-.quality-rubric td{border-bottom:1px solid var(--c-border);padding:.6rem .75rem;vertical-align:top}
-.quality-rubric tr:nth-child(even) td{background:#f7f9fc}
-.source-list{padding-left:1.2rem;font-size:.88rem;line-height:1.8}
-.source-list li{margin-bottom:.25rem}
-kbd{background:#eef2f7;border:1px solid var(--c-border);border-radius:5px;padding:.05rem .35rem;font-size:.78rem}
-@media print{
-  .site-header,.progress-bar-wrap,#float-send-bar,.reset-bar,.btn,.skip-link{display:none!important}
-  .card,.intro-block{box-shadow:none;border:1px solid #bbb;break-inside:avoid}
-  .card-body{display:block!important}
-  body{background:white}
-}
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Band 8 Modul 8.2: Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune. Lernmodul Schulsozialarbeit Niedersachsen." />
+  <title>Band 8, Modul 2: Netzwerkarbeit | SOL-Schulsozialarbeit Niedersachsen</title>
+  <style>
+    :root{--bg:#f6f7fb;--surface:#fff;--surface2:#f1f5f9;--text:#172033;--muted:#5b6475;--line:#d9e1ee;--brand:#204a87;--brand2:#2f6f9f;--accent:#9a5a00;--ok:#1f7a4d;--warn:#b45309;--bad:#b42318;--focus:#111827;--shadow:0 12px 32px rgba(15,23,42,.10);--radius:18px;--max:1180px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}a{color:var(--brand);text-underline-offset:3px}button,input,textarea,select{font:inherit}button{cursor:pointer}.wrap{max-width:var(--max);margin:0 auto;padding:0 18px}.topbar{position:sticky;top:0;z-index:50;background:rgba(246,247,251,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px}.brand{display:flex;flex-direction:column;gap:2px}.brand strong{font-size:1rem}.brand span{font-size:.88rem;color:var(--muted)}.progressBox{display:flex;align-items:center;gap:10px;min-width:250px}.bar{height:10px;flex:1;background:#e5e7eb;border-radius:999px;overflow:hidden}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:.25s}.pct{font-weight:700;color:var(--brand);min-width:44px;text-align:right}.hero{background:linear-gradient(135deg,#173763,#2f6f9f);color:white;padding:46px 0 34px}.hero .grid{display:grid;grid-template-columns:1.45fr .85fr;gap:26px;align-items:stretch}.hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;margin:0 0 14px}.hero p{font-size:1.08rem;max-width:78ch}.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.pill{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);border-radius:999px;padding:7px 11px;font-size:.9rem}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero .card{color:var(--text);padding:20px;box-shadow:none}.metaList{display:grid;gap:10px}.metaList div{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:8px}.metaList div:last-child{border-bottom:none}.layout{display:grid;grid-template-columns:280px 1fr;gap:22px;padding:24px 0 60px}.nav{position:sticky;top:76px;align-self:start;padding:14px}.nav h2{font-size:1rem;margin:0 0 10px}.nav a{display:block;text-decoration:none;color:var(--text);padding:9px 10px;border-radius:10px;margin:2px 0;font-size:.93rem;border:1px solid transparent}.nav a:hover,.nav a:focus{background:var(--surface2);border-color:var(--line)}.nav a.locked{opacity:.52}.tools{display:grid;gap:8px;margin-top:14px}.btn{border:none;background:var(--brand);color:#fff;border-radius:12px;padding:10px 14px;font-weight:700}.btn.secondary{background:#e8eef8;color:var(--brand);border:1px solid #c9d7ee}.btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--line)}.section{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}.section.locked{opacity:.58}.section h2{margin-top:0;font-size:1.55rem;color:#14335e}.section h3{color:#203c66;margin-top:1.4rem}.kicker{font-size:.86rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:800}.lead{font-size:1.08rem;color:#29364d}.box{border:1px solid var(--line);background:var(--surface2);border-radius:14px;padding:16px;margin:14px 0}.box.info{background:#eef6ff;border-color:#bfd7fb}.box.warn{background:#fff7ed;border-color:#fed7aa}.box.good{background:#ecfdf5;border-color:#bbf7d0}.box.bad{background:#fef2f2;border-color:#fecaca}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}table{width:100%;border-collapse:collapse;margin:12px 0;background:#fff;border-radius:12px;overflow:hidden}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#e8eef8;color:#173763}ul,ol{padding-left:1.3rem}.checkline{display:flex;gap:10px;align-items:flex-start;margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}.checkline input{width:22px;height:22px;accent-color:var(--brand);margin-top:2px}textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--text)}textarea{min-height:110px;resize:vertical}.task{border:1px dashed #b6c4d9;background:#fbfdff;border-radius:14px;padding:14px;margin:12px 0}.quiz button.option{display:block;width:100%;text-align:left;margin:8px 0;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text)}.quiz button.option.correct{border-color:#22c55e;background:#ecfdf5}.quiz button.option.wrong{border-color:#ef4444;background:#fef2f2}.feedback{font-weight:700;margin-top:8px}.badge{display:inline-flex;align-items:center;gap:6px;background:#eef2ff;border:1px solid #c7d2fe;color:#1e3a8a;border-radius:999px;padding:5px 9px;font-size:.85rem;font-weight:700}.small{font-size:.9rem;color:var(--muted)}.charcount{text-align:right;font-size:.85rem;color:var(--muted)}.certificate{border:2px solid #173763;border-radius:18px;padding:24px;background:#fff;margin-top:12px}.hidden{display:none!important}:focus{outline:3px solid rgba(17,24,39,.28);outline-offset:2px}.footer{color:var(--muted);font-size:.92rem;padding:24px 0 40px}@media(max-width:900px){.hero .grid,.layout,.grid2,.grid3{grid-template-columns:1fr}.nav{position:relative;top:auto}.progressBox{min-width:180px}.topbar .wrap{align-items:flex-start;flex-direction:column}.section{padding:18px}}@media print{.topbar,.nav,.tools,.checkline,.btn,.noPrint{display:none!important}.layout{display:block}.section{break-inside:avoid;box-shadow:none;border:1px solid #bbb}.hero{background:#fff;color:#000;padding:20px 0}.hero .grid{display:block}.card{box-shadow:none}body{background:#fff}}
+  
+    .header-submit-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:18px;padding:14px;border:1px solid rgba(255,255,255,.35);border-radius:16px;background:rgba(255,255,255,.12)}
+    .header-submit-controls label{display:block;min-width:210px;max-width:310px;font-weight:700;color:#fff}
+    .header-submit-controls label.header-consent{display:flex;align-items:center;gap:8px;min-width:260px;max-width:430px;line-height:1.25}
+    .header-submit-controls input[type=text],.header-submit-controls input[type=email]{width:100%;border:1px solid rgba(255,255,255,.45);border-radius:12px;padding:10px;background:#fff;color:var(--text);margin-top:5px}
+    .header-submit-controls input[type=checkbox]{width:auto;accent-color:var(--brand);margin:0}
+    .header-submit-controls .btn{background:#1f7a4d;color:#fff}
+    .header-send-status{color:#fff;font-weight:700;min-width:260px;padding:10px 0}.header-send-status.badmsg{color:#ffe2e2}.header-send-status.goodmsg{color:#e9ffe9}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Direkt zum Inhalt springen</a>
+  <header class="topbar" aria-label="Modulnavigation und Fortschritt">
+    <div class="wrap">
+      <div class="brand"><strong>Schulsozialarbeit Niedersachsen · Band 8</strong><span>Modul 2 · Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune</span></div>
+      <div class="progressBox" aria-label="Lernfortschritt"><div class="bar"><i id="progressBar"></i></div><span id="progressPct" class="pct">0%</span></div>
+    </div>
+  </header>
 
-<header class="site-header" role="banner">
-  <div class="site-header-inner">
-    <div class="header-main">
+  <section class="hero">
+    <div class="wrap grid">
       <div>
-        <div class="header-badge">SOL Niedersachsen</div>
+        <div class="kicker" style="color:#d6e8ff">Band 8 · Kooperation, Netzwerk und Sozialraum</div>
+        <h1>8.2 Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune</h1>
+        <p>Dieses Modul führt von schulinterner Kooperation zur externen Netzwerkarbeit. Im Mittelpunkt steht die Frage, wie Schulsozialarbeit externe Partner fachlich sinnvoll, rechtssicher und lebensweltorientiert einbindet, ohne Zuständigkeiten, Schweigepflicht oder Auftrag der Schule zu verwischen.</p>
+        <div class="pillrow"><span class="pill">Jugendhilfe</span><span class="pill">Beratungsstellen</span><span class="pill">Vereine</span><span class="pill">Kommune</span><span class="pill">Datenschutz</span><span class="pill">Kooperationsvereinbarung</span></div>
+        <div class="header-submit-controls" role="region" aria-label="Name, E-Mail und Online-Abgabe">
+          <label>Name für Zertifikat<input id="learnerName" type="text" placeholder="Name" autocomplete="name"></label>
+          <label>E-Mail<input id="userEmail" type="email" placeholder="name@example.de" autocomplete="email"></label>
+          <label class="header-consent"><input type="checkbox" id="privacyConfirm"> Keine identifizierenden Falldaten enthalten</label>
+          <label class="header-consent"><input type="checkbox" id="sendConsent"> Online-Übermittlung zustimmen</label>
+          <button class="btn" type="button" onclick="manualSave()">Zwischenspeichern</button>
+          <button class="btn" type="button" onclick="sendData()">Absenden</button>
+          <span id="sendStatusTop" class="header-send-status" aria-live="polite"></span>
+        </div>
       </div>
-      <div>
-        <div class="header-title">Band 2 · Modul 1: Rechtliche Grundorientierung</div>
-        <div class="header-sub">Recht, Schutzauftrag, Datenschutz und schulische Schnittstellen</div>
+      <aside class="card" aria-label="Moduldaten">
+        <h2 style="margin-top:0">Moduldaten</h2>
+        <div class="metaList">
+          <div><strong>Niveau</strong><span>Weiterbildung / Hochschule</span></div>
+          <div><strong>Workload</strong><span>ca. 5–7 Stunden</span></div>
+          <div><strong>Voraussetzung</strong><span>Band 1–7, Modul 8.1</span></div>
+          <div><strong>Prüfung</strong><span>Netzwerkkarte + Fallentscheidung</span></div>
+          <div><strong>Anschluss</strong><span>8.3 Sozialraumanalyse</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrap layout">
+    <nav class="nav card" aria-label="Abschnittsnavigation">
+      <h2>Abschnitte</h2>
+      <div id="navLinks"></div>
+      <div class="tools noPrint">
+        <button class="btn secondary" id="saveBtn">Zwischenspeichern</button>
+        <button class="btn ghost" onclick="window.print()">Drucken / PDF</button>
+        <button class="btn ghost" id="resetBtn">Fortschritt zurücksetzen</button>
       </div>
+    </nav>
+
+    <div>
+      <section class="section" id="s1" data-title="Einordnung in die Reihe">
+        <div class="kicker">1 · Einordnung</div>
+        <h2>Vom System Schule in den Sozialraum</h2>
+        <p class="lead">Modul 8.1 hat Kooperation innerhalb der Schule geklärt. Modul 8.2 erweitert den Blick auf externe Partner: Jugendamt, freie Träger, Beratungsstellen, Vereine, Polizei, Gesundheitsdienste, Kommune, Kultur- und Bildungsakteure.</p>
+        <div class="box info"><strong>Kompetenzsprung:</strong> Schulsozialarbeit wird hier nicht als „Weiterleitung an andere“ verstanden, sondern als professionelle Schnittstellenarbeit. Gute Netzwerkarbeit macht Hilfewege sichtbar, senkt Zugangsschwellen, stärkt Prävention und verhindert, dass Familien zwischen Zuständigkeiten verloren gehen.</div>
+        <table>
+          <tr><th>Vorwissen aus früheren Bänden</th><th>Wird in Modul 8.2 weitergeführt als</th></tr>
+          <tr><td>Band 2: Datenschutz, Schweigepflicht, Schutzauftrag</td><td>rechtssichere Informationsweitergabe und Einwilligung im Netzwerk</td></tr>
+          <tr><td>Band 3: Beratung und Auftragsklärung</td><td>Übergabe, Lotsenfunktion und gemeinsame Fallklärung</td></tr>
+          <tr><td>Band 4: Kinderschutz und Krise</td><td>Kooperation mit Jugendhilfe, Beratungsstellen, Polizei und Krisendiensten</td></tr>
+          <tr><td>Band 6: Prävention</td><td>präventive Angebote im Sozialraum, Projekte, Gruppenangebote</td></tr>
+          <tr><td>Band 7: Teilhabe</td><td>niedrigschwellige Unterstützung bei Armut, Migration, Inklusion und Benachteiligung</td></tr>
+        </table>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s1"><label>Ich kann Modul 8.2 als Übergang von schulinterner Kooperation zu externer Netzwerkarbeit einordnen.</label></div>
+      </section>
+
+      <section class="section" id="s2" data-title="Kompetenz- und Lernziele">
+        <div class="kicker">2 · Lernziele</div>
+        <h2>Kompetenzziele</h2>
+        <div class="grid2">
+          <div class="box"><h3>Fachkompetenz</h3><ul><li>relevante Netzwerkpartner benennen und nach Auftrag, Zuständigkeit und Zugang sortieren</li><li>rechtliche Grundlagen der Kooperation mit Jugendhilfe und Schule einordnen</li><li>Grenzen von Beratung, Vermittlung und Fallverantwortung unterscheiden</li></ul></div>
+          <div class="box"><h3>Methodenkompetenz</h3><ul><li>eine Netzwerkkarte erstellen</li><li>Kooperationsgespräche strukturieren</li><li>Übergaben mit Einwilligung und Dokumentation gestalten</li></ul></div>
+          <div class="box"><h3>Sozialkompetenz</h3><ul><li>unterschiedliche Systemlogiken respektieren</li><li>Konflikte zwischen Schule, Eltern und externen Stellen moderieren</li><li>verlässliche Beziehungen zu Partnern aufbauen</li></ul></div>
+          <div class="box"><h3>Reflexionskompetenz</h3><ul><li>eigene Netzwerkmacht kritisch prüfen</li><li>Defizitblick auf Familien vermeiden</li><li>lebensweltliche Barrieren erkennen</li></ul></div>
+        </div>
+        <h3>Messbare Lernziele</h3>
+        <ol><li>Du kannst mindestens acht externe Netzwerkpartner der Schulsozialarbeit fachlich begründet zuordnen.</li><li>Du kannst drei Fälle unterscheiden: Information, Vermittlung, gemeinsame Fallarbeit.</li><li>Du kannst eine datenschutzsensible Übergabe formulieren.</li><li>Du kannst eine einfache Kooperationsvereinbarung skizzieren.</li></ol>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s2"><label>Ich kenne die Kompetenzziele und kann sie auf meine eigene Praxis beziehen.</label></div>
+      </section>
+
+      <section class="section" id="s3" data-title="Vorwissensaktivierung">
+        <div class="kicker">3 · Aktivierung</div>
+        <h2>Mein vorhandenes Netzwerk</h2>
+        <p>Viele Schulen haben bereits Netzwerke. Häufig sind sie aber personengebunden, zufällig gewachsen oder nicht dokumentiert. Professionalisierung beginnt damit, bestehende Kontakte sichtbar zu machen.</p>
+        <div class="task"><label for="netzStart"><strong>Aufgabe:</strong> Notiere fünf externe Stellen, mit denen deine Schule oder Schulsozialarbeit bereits Kontakt hat. Ergänze jeweils: Wofür ist diese Stelle zuständig? Wie gut ist der Zugang?</label><textarea id="netzStart" data-save="netzStart" placeholder="Beispiel: Jugendamt Allgemeiner Sozialer Dienst, zuständig für Hilfen zur Erziehung und Schutzauftrag, Kontakt über ..."></textarea></div>
+        <div class="grid3"><div class="box"><strong>Fallbezogen</strong><br>Kontakt wegen eines konkreten Kindes oder einer Familie.</div><div class="box"><strong>Präventiv</strong><br>Kontakt für Projekt, Gruppe, Elternabend oder Fortbildung.</div><div class="box"><strong>Strukturell</strong><br>Regelmäßiger Austausch, Arbeitskreis, Kooperationsvereinbarung.</div></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s3"><label>Ich habe mein vorhandenes Netzwerk reflektiert.</label></div>
+      </section>
+
+      <section class="section" id="s4" data-title="Theorie: Netzwerkarbeit">
+        <div class="kicker">4 · Theorie</div>
+        <h2>Was professionelle Netzwerkarbeit meint</h2>
+        <p>Netzwerkarbeit ist mehr als eine Adressliste. Sie ist die gezielte, reflektierte und dokumentierte Gestaltung von Kooperationsbeziehungen, die Kindern, Jugendlichen und Familien verlässlich zugutekommen.</p>
+        <table>
+          <tr><th>Ebene</th><th>Typische Frage</th><th>Beispiel</th></tr>
+          <tr><td>Fallbezogene Kooperation</td><td>Wer kann in diesem Einzelfall sinnvoll unterstützen?</td><td>Übergabe an Erziehungsberatung mit Einwilligung der Eltern</td></tr>
+          <tr><td>Fallübergreifende Kooperation</td><td>Welche wiederkehrenden Bedarfe sehen wir?</td><td>regelmäßiger Austausch mit Jugendpflege zu Freizeit- und Beteiligungsangeboten</td></tr>
+          <tr><td>Strukturelle Kooperation</td><td>Welche Verfahren müssen verbindlich geklärt sein?</td><td>Kooperationsvereinbarung Schule, Jugendamt, Beratungsstelle</td></tr>
+        </table>
+        <div class="box warn"><strong>Wichtige Grenze:</strong> Schulsozialarbeit ersetzt keine Jugendhilfeleistung, keine Therapie, keine Diagnostik, keine Polizeiarbeit und keine Schulpsychologie. Sie kann Zugänge eröffnen, Prozesse begleiten und fachlich übersetzen, bleibt aber an Auftrag, Schweigepflicht und Rollenklärung gebunden.</div>
+        <h3>Netzwerkqualität entsteht durch sechs Faktoren</h3>
+        <ol><li>klare Zuständigkeiten</li><li>bekannte Ansprechpersonen</li><li>vereinbarte Kommunikationswege</li><li>rechtssichere Informationsweitergabe</li><li>regelmäßige Pflege der Kontakte</li><li>gemeinsame Reflexion von Fällen und Strukturen</li></ol>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s4"><label>Ich kann Netzwerkarbeit von bloßer Weitergabe oder Adressvermittlung unterscheiden.</label></div>
+      </section>
+
+      <section class="section" id="s5" data-title="Rechtlicher Rahmen">
+        <div class="kicker">5 · Recht und Auftrag</div>
+        <h2>Rechtlicher Rahmen: Kooperation ja, Datenweitergabe nicht automatisch</h2>
+        <p>Für Schulsozialarbeit sind mehrere Rechtskreise relevant. In Niedersachsen basiert soziale Arbeit in schulischer Verantwortung auf dem Bildungsauftrag der Schule und dem landesspezifischen Erlass. Zugleich ordnet § 13a SGB VIII Schulsozialarbeit als sozialpädagogisches Angebot am Ort Schule ein, während § 81 SGB VIII strukturelle Zusammenarbeit der Jugendhilfe mit anderen Stellen beschreibt.</p>
+        <div class="grid2">
+          <div class="box info"><h3>Schule / Niedersachsen</h3><p>Schulische Sozialarbeit in Niedersachsen arbeitet im Rahmen des schulischen Bildungs- und Erziehungsauftrags. Kooperation mit Jugendhilfe und externen Stellen ist fachlich notwendig, aber nicht gleichbedeutend mit grenzenlosem Informationsaustausch.</p></div>
+          <div class="box info"><h3>Jugendhilfe / SGB VIII</h3><p>§ 13a SGB VIII beschreibt Schulsozialarbeit als sozialpädagogisches Angebot am Ort Schule. § 81 SGB VIII verpflichtet öffentliche Jugendhilfe zur strukturellen Zusammenarbeit mit Stellen, deren Tätigkeit die Lebenssituation junger Menschen und Familien betrifft.</p></div>
+        </div>
+        <h3>Prüffrage vor jeder Weitergabe</h3>
+        <ol><li><strong>Auftrag:</strong> Warum soll diese Information weitergegeben werden?</li><li><strong>Einwilligung:</strong> Liegt eine informierte Einwilligung vor?</li><li><strong>Erforderlichkeit:</strong> Welche Information ist wirklich nötig?</li><li><strong>Schutzauftrag:</strong> Gibt es gewichtige Anhaltspunkte für eine Gefährdung?</li><li><strong>Dokumentation:</strong> Ist nachvollziehbar, wer was warum getan hat?</li></ol>
+        <div class="box bad"><strong>Fehlerquelle:</strong> „Wir sitzen doch alle im selben Boot“ ist keine Rechtsgrundlage. Auch bei guter Absicht braucht Kooperation eine fachliche und rechtliche Begründung.</div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s5"><label>Ich kann den rechtlichen Rahmen grob erklären und weiß, dass Kooperation keine automatische Datenfreigabe bedeutet.</label></div>
+      </section>
+
+      <section class="section" id="s6" data-title="Netzwerkpartner">
+        <div class="kicker">6 · Netzwerkpartner</div>
+        <h2>Partnerlandschaft: Wer kann was?</h2>
+        <table>
+          <tr><th>Partner</th><th>Typischer Beitrag</th><th>Grenze / Klärungsbedarf</th></tr>
+          <tr><td>Jugendamt / ASD</td><td>Hilfen zur Erziehung, Schutzauftrag, Beratung, familienbezogene Unterstützung</td><td>Fallverantwortung, Datenschutz, Schwelle zur Hilfeplanung</td></tr>
+          <tr><td>Erziehungsberatungsstelle</td><td>niedrigschwellige Beratung von Eltern, Kindern, Jugendlichen</td><td>Freiwilligkeit und Terminzugang</td></tr>
+          <tr><td>Schulpsychologie</td><td>psychologische Beratung im schulischen Kontext, Krisen, Systemberatung</td><td>keine sozialpädagogische Dauerbegleitung im Alltag</td></tr>
+          <tr><td>Vereine / Jugendpflege</td><td>Freizeit, Beteiligung, Integration, Gruppenangebote</td><td>Kinderschutzstandards, Verlässlichkeit, Zugangskosten</td></tr>
+          <tr><td>Gesundheitsdienste</td><td>Gesundheitsberatung, Prävention, Schulärztlicher Dienst</td><td>medizinische Diagnostik nicht durch SSA</td></tr>
+          <tr><td>Polizei / Präventionsteam</td><td>Prävention, Gefahrenabwehr, Strafverfolgung</td><td>Schulsozialarbeit ist keine Ermittlungsinstanz</td></tr>
+          <tr><td>Kommune / Schulträger</td><td>Räume, Infrastruktur, Ganztag, Sozialraumplanung</td><td>politische und finanzielle Zuständigkeiten sauber trennen</td></tr>
+          <tr><td>Berufsberatung / Betriebe</td><td>Übergang Schule-Beruf, Praktikum, Ausbildung</td><td>Datenschutz, realistische Perspektivplanung</td></tr>
+        </table>
+        <div class="task"><label for="partnerAnalyse"><strong>Aufgabe:</strong> Wähle drei Partner aus deiner Region. Beschreibe Auftrag, Zugang, Nutzen, Risiko und nächste Kontaktpflege.</label><textarea id="partnerAnalyse" data-save="partnerAnalyse"></textarea></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s6"><label>Ich kann zentrale Netzwerkpartner nach Beitrag und Grenze unterscheiden.</label></div>
+      </section>
+
+      <section class="section" id="s7" data-title="Wissenschaftsbox">
+        <div class="kicker">7 · Wissenschaftsbox</div>
+        <h2>Kooperation als Übersetzungsarbeit zwischen Systemlogiken</h2>
+        <p>Schule, Jugendhilfe, Beratungsstellen, Vereine und Kommune folgen unterschiedlichen Logiken. Schule arbeitet stark mit Klassen, Leistungsbewertung, Unterrichtsorganisation und Aufsicht. Jugendhilfe arbeitet mit Freiwilligkeit, Lebensweltorientierung, Hilfeplanung und sozialpädagogischer Unterstützung. Kommune denkt in Infrastruktur, Ressourcen, Planung und politischer Verantwortung.</p>
+        <div class="box info"><strong>Wissenschaftlicher Kern:</strong> Schulsozialarbeit steht nicht „zwischen allen Stühlen“, sondern kann eine Übersetzungsfunktion ausüben. Dafür braucht sie fachliche Eigenständigkeit, Rollenbewusstsein und die Fähigkeit, Spannungen zwischen Systemen nicht vorschnell zu harmonisieren.</div>
+        <h3>Vier Analysefragen für Netzwerke</h3>
+        <ol><li><strong>Wer profitiert?</strong> Dient die Kooperation Kindern, Jugendlichen und Familien oder vor allem der Entlastung von Institutionen?</li><li><strong>Wer entscheidet?</strong> Sind Eltern und junge Menschen beteiligt oder nur Gegenstand der Fallbesprechung?</li><li><strong>Wer trägt Verantwortung?</strong> Ist klar, welche Stelle was übernimmt?</li><li><strong>Wer bleibt außen vor?</strong> Gibt es Barrieren durch Sprache, Kosten, Scham, Mobilität oder Bürokratie?</li></ol>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s7"><label>Ich kann Kooperation als Übersetzungsarbeit zwischen unterschiedlichen Systemlogiken beschreiben.</label></div>
+      </section>
+
+      <section class="section" id="s8" data-title="Praxisfall">
+        <div class="kicker">8 · Praxisfall</div>
+        <h2>Fallwerkstatt: „Alle wissen etwas, aber niemand koordiniert“</h2>
+        <div class="box"><p><strong>Ausgangslage:</strong> Ein Schüler aus Jahrgang 6 fehlt häufig, wirkt erschöpft und kommt wiederholt ohne Material. Die Klassenlehrkraft vermutet Überforderung zu Hause. Die Mutter wirkt bei Telefonaten freundlich, sagt Termine aber kurzfristig ab. Im Ganztag berichten Mitarbeitende, dass der Schüler nachmittags oft hungrig ist. Ein Sportverein hätte ein kostenloses Angebot, die Jugendpflege kennt die Familie aus früheren Ferienaktionen. Die Schule überlegt, das Jugendamt einzuschalten.</p></div>
+        <div class="task"><label for="fall1"><strong>Aufgabe 1:</strong> Welche Informationen dürfen schulisch intern geklärt werden, welche brauchen Einwilligung, und wann wäre der Schutzauftrag zu prüfen?</label><textarea id="fall1" data-save="fall1"></textarea></div>
+        <div class="task"><label for="fall2"><strong>Aufgabe 2:</strong> Skizziere ein fachlich angemessenes Vorgehen in fünf Schritten.</label><textarea id="fall2" data-save="fall2"></textarea></div>
+        <details class="box good"><summary><strong>Musterlösung einblenden</strong></summary><ol><li>Beobachtungen sammeln und sauber von Vermutungen trennen.</li><li>Schülergespräch altersangemessen führen, ohne Druck und ohne Versprechen absoluter Geheimhaltung.</li><li>Elterngespräch anbieten, niedrigschwellig und nicht vorwurfsvoll.</li><li>Mit Einwilligung Zugänge zu Jugendpflege, Verein, Beratungsstelle oder Bildungs- und Teilhabeleistungen prüfen.</li><li>Bei gewichtigen Anhaltspunkten Verfahren nach Schutzauftrag aktivieren und Beratung durch geeignete Fachstelle einholen.</li></ol></details>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s8"><label>Ich habe den Praxisfall bearbeitet und zwischen Hilfe, Netzwerk und Schutzauftrag unterschieden.</label></div>
+      </section>
+
+      <section class="section" id="s9" data-title="Interaktive Aufgaben">
+        <div class="kicker">9 · Interaktive Aufgaben</div>
+        <h2>Entscheidungsübungen</h2>
+        <div class="quiz" data-answer="1"><p><strong>1. Eine Lehrkraft bittet dich, dem Jugendamt „vorsorglich alles zu schicken“, was über eine Familie bekannt ist. Was ist fachlich korrekt?</strong></p><button class="option">Alles senden, weil Jugendamt und Schule zusammenarbeiten müssen.</button><button class="option">Auftrag, Einwilligung, Erforderlichkeit und ggf. Schutzauftrag prüfen.</button><button class="option">Nichts senden, weil Schulsozialarbeit nie mit Jugendhilfe kooperiert.</button><div class="feedback"></div></div>
+        <div class="quiz" data-answer="2"><p><strong>2. Ein Verein bietet ein kostenloses Sozialtraining an. Was prüfst du vor einer Kooperation?</strong></p><button class="option">Nur ob das Angebot kostenlos ist.</button><button class="option">Nur ob die Schulleitung es gut findet.</button><button class="option">Zielgruppe, Qualität, Kinderschutz, Datenschutz, Verlässlichkeit und Passung zum Schulkonzept.</button><div class="feedback"></div></div>
+        <div class="quiz" data-answer="0"><p><strong>3. Was ist ein Merkmal struktureller Netzwerkarbeit?</strong></p><button class="option">Regelmäßige, vereinbarte Zusammenarbeit über Einzelfälle hinaus.</button><button class="option">Ein einmaliger Anruf bei einer Beratungsstelle.</button><button class="option">Eine private Telefonnummer in der Schreibtischschublade.</button><div class="feedback"></div></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s9"><label>Ich habe die Entscheidungsübungen bearbeitet.</label></div>
+      </section>
+
+      <section class="section" id="s10" data-title="Methodenkoffer">
+        <div class="kicker">10 · Methodenkoffer</div>
+        <h2>Werkzeuge für Netzwerkarbeit</h2>
+        <div class="grid2">
+          <div class="box"><h3>1. Netzwerkkarte</h3><p>Visualisiert Partner nach Nähe, Verlässlichkeit, Zuständigkeit und Zugang. Sinnvoll für Teamtage und Konzeptarbeit.</p></div>
+          <div class="box"><h3>2. Kontaktsteckbrief</h3><p>Enthält Ansprechperson, Auftrag, Zielgruppe, Zugang, Kosten, Schweigepflichtfragen, Notfallweg.</p></div>
+          <div class="box"><h3>3. Übergabebogen</h3><p>Dokumentiert Einwilligung, Anlass, vereinbarte nächste Schritte und Rückmeldewege.</p></div>
+          <div class="box"><h3>4. Kooperationsmatrix</h3><p>Ordnet Partner nach Prävention, Einzelfallhilfe, Krise, Übergang, Teilhabe und Elternarbeit.</p></div>
+          <div class="box"><h3>5. Runder Tisch</h3><p>Nur mit klarem Auftrag, Beteiligung der Betroffenen, Datenschutzklärung und dokumentierten Vereinbarungen.</p></div>
+          <div class="box"><h3>6. Jahresnetzwerkplan</h3><p>Legt fest, welche Kontakte nicht erst im Krisenfall gepflegt werden.</p></div>
+        </div>
+        <div class="task"><label for="toolPlan"><strong>Praxisformular:</strong> Erstelle einen Kontaktsteckbrief für einen Partner, den du in den nächsten vier Wochen aktiv pflegen möchtest.</label><textarea id="toolPlan" data-save="toolPlan" placeholder="Name der Stelle, Auftrag, Ansprechperson, Zugang, typische Fälle, Datenschutz, nächster Schritt ..."></textarea></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s10"><label>Ich kann mindestens zwei Werkzeuge der Netzwerkarbeit praktisch anwenden.</label></div>
+      </section>
+
+      <section class="section" id="s11" data-title="Fehlerwerkstatt">
+        <div class="kicker">11 · Fehlerwerkstatt</div>
+        <h2>Typische Fehler in der Netzwerkarbeit</h2>
+        <table>
+          <tr><th>Fehler</th><th>Risiko</th><th>Bessere Praxis</th></tr>
+          <tr><td>Kontakte nur im Krisenfall nutzen</td><td>Misstrauen, Zeitdruck, unklare Wege</td><td>Kontakte präventiv pflegen</td></tr>
+          <tr><td>Eltern übergehen</td><td>Vertrauensbruch, geringe Mitwirkung</td><td>Transparenz und Beteiligung herstellen</td></tr>
+          <tr><td>zu viele Informationen weitergeben</td><td>Datenschutzverletzung</td><td>Erforderlichkeit prüfen</td></tr>
+          <tr><td>Verein übernimmt „Problemkinder“</td><td>Stigmatisierung</td><td>Angebot teilhabeorientiert öffnen</td></tr>
+          <tr><td>unverbindliche Absprachen</td><td>niemand fühlt sich zuständig</td><td>wer macht was bis wann dokumentieren</td></tr>
+        </table>
+        <div class="task"><label for="fehler"><strong>Reflexion:</strong> Welcher Fehler ist in deiner Praxis oder Einrichtung am wahrscheinlichsten? Was wäre eine realistische Gegenmaßnahme?</label><textarea id="fehler" data-save="fehler"></textarea></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s11"><label>Ich habe typische Fehler reflektiert und eine Gegenmaßnahme formuliert.</label></div>
+      </section>
+
+      <section class="section" id="s12" data-title="Gelingensnachweis">
+        <div class="kicker">12 · Gelingensnachweis</div>
+        <h2>Prüfungsleistung: Netzwerkkarte und Fallentscheidung</h2>
+        <p>Der Gelingensnachweis besteht aus zwei Teilen:</p>
+        <ol><li>Erstelle eine Netzwerkkarte mit mindestens acht externen Partnern.</li><li>Bearbeite einen Fall und begründe, welche Partner du wann, wie und mit welcher rechtlichen Absicherung einbindest.</li></ol>
+        <table>
+          <tr><th>Kriterium</th><th>0 Punkte</th><th>1 Punkt</th><th>2 Punkte</th></tr>
+          <tr><td>Partnerauswahl</td><td>zufällig</td><td>teilweise passend</td><td>fachlich begründet und breit</td></tr>
+          <tr><td>Rollenklärung</td><td>unklar</td><td>teilweise geklärt</td><td>Auftrag und Grenzen deutlich</td></tr>
+          <tr><td>Datenschutz</td><td>nicht beachtet</td><td>allgemein erwähnt</td><td>konkret auf Einwilligung und Erforderlichkeit bezogen</td></tr>
+          <tr><td>Lebensweltorientierung</td><td>defizitorientiert</td><td>teilweise ressourcenorientiert</td><td>Barrieren und Ressourcen differenziert</td></tr>
+          <tr><td>Umsetzbarkeit</td><td>unrealistisch</td><td>teilweise realistisch</td><td>konkret, machbar, terminiert</td></tr>
+        </table>
+        <div class="task"><label for="nachweis"><strong>Arbeitsfeld:</strong> Skizziere hier deinen Gelingensnachweis.</label><textarea id="nachweis" data-save="nachweis"></textarea></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s12"><label>Ich habe den Gelingensnachweis vorbereitet.</label></div>
+      </section>
+
+      <section class="section" id="s13" data-title="Transfer, Literatur und Ausblick">
+        <div class="kicker">13 · Abschluss</div>
+        <h2>Transferauftrag, Literatur und Ausblick</h2>
+        <h3>Transferauftrag</h3>
+        <p>Entwickle für deine Schule eine erste Netzwerkstrategie. Beschreibe auf maximal 2.800 Zeichen: wichtigste Partner, aktuelle Lücken, Datenschutzklärung, Kontaktpflege, ein konkreter nächster Schritt.</p>
+        <textarea id="transfer" data-save="transfer" maxlength="2800" placeholder="Meine Netzwerkstrategie ..."></textarea><div class="charcount"><span id="transferCount">0</span>/2800 Zeichen</div>
+        <button class="btn" id="submitBtn">Gelingensnachweis senden</button><span id="submitStatus" class="small" style="margin-left:10px"></span>
+        <h3>Literatur und Quellenhinweise</h3>
+        <ul>
+          <li>Niedersächsisches Kultusministerium: Erlass „Soziale Arbeit in schulischer Verantwortung“, in Kraft seit 01.08.2017.</li>
+          <li>SGB VIII § 13a Schulsozialarbeit und § 81 strukturelle Zusammenarbeit.</li>
+          <li>DBSH / Fachverbände: berufsethische und fachliche Standards Sozialer Arbeit und Schulsozialarbeit.</li>
+          <li>Speck, Karsten: Schulsozialarbeit. Eine Einführung.</li>
+          <li>Thiersch, Hans: Lebensweltorientierte Soziale Arbeit.</li>
+          <li>Olk / Speck / Stimpel: Kooperation von Jugendhilfe und Schule.</li>
+        </ul>
+        <div class="box good"><strong>Ausblick auf Modul 8.3:</strong> Nach der Partnerperspektive folgt die Sozialraumanalyse. Dort wird untersucht, welche Ressourcen, Barrieren, Wege, Milieus und Angebotslücken im Umfeld der Schule bestehen.</div>
+        <div class="certificate" id="certificate"><h2>Zertifikat</h2><p>Hiermit wird bestätigt, dass <input type="text" id="certName" data-save="certName" placeholder="Name eintragen" style="max-width:320px"> das Modul <strong>8.2 Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune</strong> bearbeitet hat.</p><p class="small">Datum: <span id="certDate"></span> · Fortschritt: <span id="certProgress">0%</span></p></div>
+        <div class="checkline"><input type="checkbox" class="done" data-id="s13"><label>Ich habe Transferauftrag, Literatur und Ausblick abgeschlossen.</label></div>
+      </section>
+
+      <div class="footer">Version 1 · Band 8 Modul 8.2 · Lernplattform Schulsozialarbeit Niedersachsen · HTML-Einzeldatei für GitHub Pages</div>
     </div>
-    <div class="header-form" aria-label="Teilnehmendendaten und Ergebnisübermittlung">
-      <div class="header-field">
-        <label for="learnerName">Name</label>
-        <input type="text" id="learnerName" placeholder="Name oder Kürzel" maxlength="80" autocomplete="name">
-      </div>
-      <div class="header-field">
-        <label for="learnerEmail">E-Mail</label>
-        <input type="email" id="learnerEmail" placeholder="name@example.de" maxlength="120" autocomplete="email">
-      </div>
-      <button class="header-save-btn" id="saveBtn" onclick="zwischenspeichern()">💾 Zwischenspeichern</button>
-      <button class="header-send-btn" id="sendBtn" onclick="sendResultsToGoogleSheets()">📤 Absenden</button>
-    </div>
-    <div class="header-consent">
-      <label><input type="checkbox" id="privacyConfirm"> Keine identifizierenden Falldaten enthalten</label>
-      <label><input type="checkbox" id="sendConsent"> Online-Übermittlung zustimmen</label>
-    </div>
-  </div>
-  <div class="header-status" id="sendStatus" aria-live="polite"></div>
-</header>
-
-<div class="progress-bar-wrap" aria-label="Lernfortschritt">
-  <div class="progress-bar-inner">
-    <div class="progress-label">
-      <span id="progressText">Fortschritt: 0 %</span>
-      <span id="progressSections">0 von 10 Abschnitten</span>
-    </div>
-    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progressText"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-  </div>
-</div>
-
-<noscript><div class="page-wrap"><div class="block-law" style="margin-top:1rem">Dieses Modul benötigt JavaScript für Fortschritt, Aufgabenlogik und Ergebnisübermittlung. Die Inhalte bleiben lesbar, aber interaktive Prüfungen und Google-Sheets-Senden funktionieren ohne JavaScript nicht.</div></div></noscript>
-<main class="page-wrap" role="main" id="main-content">
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- INTRO -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="intro-block">
-  <h2>Willkommen in Band 2</h2>
-  <p>In Band 1 haben Sie die Grundlagen der Schulsozialarbeit kennengelernt: Rolle, Auftrag, Bedarfslagen und Qualitätsverständnis. Band 2 baut darauf auf. Er fragt: <em>Welche rechtlichen Leitplanken begleiten und schützen diese Arbeit?</em></p>
-  <p>Dieses Modul ist der Einstieg in Band 2. Es ist als interaktiver Selbstlernpfad konzipiert. Bearbeiten Sie die Abschnitte der Reihe nach. Jeder abgeschlossene Abschnitt schaltet den nächsten frei.</p>
-
-  <div class="block-reflex" style="margin-top:1rem;">
-    <div class="block-label">👤 Angaben für die Ergebnisübermittlung</div>
-    <p>Bitte tragen Sie Name und E-Mail-Adresse direkt zu Beginn ein. Die Angaben werden lokal gespeichert und beim späteren Absenden zusammen mit dem Ergebnis übertragen.</p>
-  </div>
-
-  <div class="reset-bar"><button class="btn btn-sm btn-outline" onclick="resetProgress()">↺ Fortschritt zurücksetzen</button></div>
-</div>
-
-<div class="card open" id="modulsteckbrief">
-  <div class="card-header" role="heading" aria-level="2">
-    <span class="card-icon">🎓</span>
-    <div style="flex:1">
-      <div class="card-title">Modulsteckbrief und Hochschulrahmen</div>
-      <div class="text-muted text-small">Workload · Kompetenzziele · Prüfungslogik · Anschlussmodule</div>
-    </div>
-  </div>
-  <div class="card-body" style="display:block">
-    <div class="meta-grid">
-      <div class="meta-card"><b>Band / Modul</b><span>Band 2, Modul 1: Rechtliche Grundorientierung der Schulsozialarbeit in Niedersachsen</span></div>
-      <div class="meta-card"><b>Workload</b><span>90 bis 120 Minuten Selbststudium; 30 bis 45 Minuten Vertiefung im Seminar oder in Praxisanleitung</span></div>
-      <div class="meta-card"><b>Voraussetzungen</b><span>Band 1, Module 1 bis 4: Auftrag, Berufseinstieg, Zielgruppen und Qualität</span></div>
-      <div class="meta-card"><b>Prüfungsleistung</b><span>Gelingensnachweis mit mindestens 70 Prozent plus fallbezogene Reflexion zum 5-Schritte-Kompass</span></div>
-      <div class="meta-card"><b>Anschluss</b><span>Modul 2: Datenschutz, Schweigepflicht und Vertrauensschutz; Modul 3: Schutzauftrag und Gefährdungseinschätzung</span></div>
-      <div class="meta-card"><b>Geeignet für</b><span>Hochschule, Anerkennungsjahr, Weiterbildung, Trägerqualifizierung und interne Einarbeitung</span></div>
-    </div>
-
-    <div class="block-theory">
-      <div class="block-label">Kompetenzziele</div>
-      <p>Nach Abschluss dieses Moduls können Lernende zentrale Rechtsnormen der Schulsozialarbeit benennen, rechtliche Orientierung von Rechtsberatung unterscheiden, Vertrauensschutz und Kinderschutz fachlich abwägen und in einer Fallvignette einen begründeten nächsten Handlungsschritt ableiten.</p>
-      <ul style="margin-left:1.2rem;font-size:.9rem;line-height:1.8">
-        <li><strong>Wissen:</strong> § 13a, § 8a, § 8b und § 65 SGB VIII, DSGVO-Grundsätze, KKG und niedersächsische Schnittstellen einordnen.</li>
-        <li><strong>Anwendung:</strong> anvertraute Informationen, Beobachtungen, Vermutungen und Bewertungen trennen.</li>
-        <li><strong>Urteil:</strong> Informationsweitergabe, anonymisierte Beratung, Einwilligung und Schutzauftrag fallbezogen abwägen.</li>
-        <li><strong>Transfer:</strong> einen eigenen 5-Schritte-Kompass für die Praxis formulieren und dokumentieren.</li>
-      </ul>
-    </div>
-
-    <div class="block-law">
-      <div class="block-label">Rechtlicher Hinweis</div>
-      <p>Dieses Modul vermittelt eine fachliche Grundorientierung. Es ersetzt keine individuelle Rechtsberatung und keine verbindlichen Dienstanweisungen des jeweiligen Trägers oder Dienstherrn. In konkreten Fällen gelten die aktuelle Gesetzeslage, örtliche Schutzkonzepte, Dienstwege, Datenschutzvorgaben und Kooperationsvereinbarungen.</p>
-    </div>
-  </div>
-</div>
-
-
-<!-- Bandübersicht -->
-<details style="margin:1rem 0;">
-  <summary style="cursor:pointer;font-weight:700;color:var(--c-primary);padding:.5rem 0;">📚 Übersicht: Alle 9 Bände</summary>
-  <div class="band-grid" style="margin-top:.8rem;">
-    <div class="band-card done"><span class="band-badge badge-done">✓ Abgeschlossen</span><div class="band-nr">Band 1</div><div class="band-title">Grundlagen, Berufseinstieg, Bedarfslagen und Qualität</div><div class="band-hint">Basis für dieses Modul</div></div>
-    <div class="band-card active"><span class="band-badge badge-active">► Jetzt</span><div class="band-nr">Band 2</div><div class="band-title">Recht, Schutzauftrag, Datenschutz und schulische Schnittstellen</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 3</div><div class="band-title">Beratung und Gesprächsführung</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 4</div><div class="band-title">Kinderschutz, Krise und Gefährdungseinschätzung</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 5</div><div class="band-title">Konflikte, Gewalt, Mobbing</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 6</div><div class="band-title">Prävention und soziales Lernen</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 7</div><div class="band-title">Inklusion, Armut, Migration und Teilhabe</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 8</div><div class="band-title">Kooperation, Netzwerkarbeit und Sozialraum</div></div>
-    <div class="band-card"><span class="band-badge badge-future">Folgt</span><div class="band-nr">Band 9</div><div class="band-title">Dokumentation, Evaluation, Ethik und Professionalisierung</div></div>
-  </div>
-</details>
-
-<!-- Modulübersicht Band 2 -->
-<details style="margin:1rem 0;">
-  <summary style="cursor:pointer;font-weight:700;color:var(--c-primary);padding:.5rem 0;">🗂 Modulstruktur Band 2</summary>
-  <div class="module-list" style="margin-top:.8rem;">
-    <div class="module-item active"><div class="module-nr">Modul 1</div><div class="module-content"><div class="module-title">Rechtliche Grundorientierung ◄ Sie sind hier</div><div class="module-desc">Auftrag, Rechtsrahmen, Datenschutz, Schweigepflicht, Schutzauftrag und Schnittstellen im Überblick</div></div></div>
-    <div class="module-item"><div class="module-nr">Modul 2</div><div class="module-content"><div class="module-title">Datenschutz, Schweigepflicht und Vertrauensschutz</div><div class="module-desc">Einwilligung, Gesprächsvertraulichkeit, Grenzen der Informationsweitergabe, datenschutzsensible Dokumentation</div></div></div>
-    <div class="module-item"><div class="module-nr">Modul 3</div><div class="module-content"><div class="module-title">Schutzauftrag und erste Gefährdungseinschätzung</div><div class="module-desc">Gewichtige Anhaltspunkte, strukturierte Prüfung, insoweit erfahrene Fachkraft, abgestimmtes Handeln</div></div></div>
-    <div class="module-item"><div class="module-nr">Modul 4</div><div class="module-content"><div class="module-title">Schulische Schnittstellen und Zuständigkeiten</div><div class="module-desc">Lehrkräfte, Schulleitung, Eltern, Jugendamt, externe Stellen - wer ist wofür zuständig?</div></div></div>
-  </div>
-  <p class="text-muted mt1"><em>Hinweis: Band 2 gliedert sich in 4 Module. Die Themen rechtssichere Kommunikation und Dokumentation werden innerhalb der Module 1 bis 4 mitgeführt und nicht als eigenes fünftes Modul ausgewiesen.</em></p>
-</details>
-
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 1: Fallvignette Einstieg -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-1" data-section="1">
-  <div class="card-header" onclick="toggleCard('sec-1')" role="button" tabindex="0" aria-expanded="true">
-    <span class="card-icon">📖</span>
-    <div style="flex:1">
-      <div class="card-title">Einstieg: „Bitte sagen Sie es niemandem"</div>
-      <div class="text-muted text-small">Fallvignette · Vorwissensaktivierung</div>
-    </div>
-    <span class="card-status status-active" id="status-1">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-case">
-      <div class="block-label">📂 Fallvignette</div>
-      <p>Eine Schülerin aus Klasse 7 - nennen wir sie Mia - kommt in der Pause in Ihr Büro. Sie wirkt angespannt, hält die Türklinke noch in der Hand und sagt leise:</p>
-      <p><em>„Ich muss Ihnen etwas erzählen, aber Sie dürfen es wirklich niemandem sagen."</em></p>
-      <p>Im Gespräch berichtet sie von häufigem Streit zu Hause. Sie sagt, dass sie in letzter Zeit kaum schläft und manchmal Angst hat, nach Hause zu gehen. Als Sie vorsichtig nachfragen, wird sie unsicher:</p>
-      <p><em>„So schlimm ist es auch wieder nicht. Ich hätte das besser nicht erzählen sollen."</em></p>
-      <p>Sie wissen außerdem: Mias Klassenlehrerin hat Sie bereits zweimal angesprochen. Mia wirke seit Wochen müde, ziehe sich zurück und fehle häufiger.</p>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Aufgabe: Erstes Sortieren</div>
-      <p>Ordnen Sie die folgenden Informationen aus der Situation einer Kategorie zu. Klicken Sie auf die passende Kategorie.</p>
-      <div id="sorting-task"></div>
-      <div class="btn-row">
-        <button class="btn btn-outline btn-sm" onclick="checkSorting()">Auswahl prüfen</button>
-        <button class="btn btn-outline btn-sm" onclick="showSol('sol-sorting')">Musterlösung</button>
-      </div>
-      <div class="block-solution" id="sol-sorting">
-        <div class="block-label">✅ Musterlösung</div>
-        <p><strong>Beobachtbar (durch Dritte):</strong> Mia wirkt angespannt; sie ist häufig müde; sie zieht sich zurück; sie fehlt häufiger.<br>
-        <strong>Anvertraut (im Gespräch mitgeteilt):</strong> häufiger Streit zu Hause; Schlafprobleme; Angst vor dem Heimweg.<br>
-        <strong>Noch unklar / offen:</strong> Was genau passiert zu Hause? Liegt eine Gefährdung vor? Wie erlebt Mia die Situation?<br>
-        <strong>Bewertung (Ihre Einschätzung):</strong> Die Situation verdient ernsthafte fachliche Aufmerksamkeit - ist aber noch keine gesicherte Kindeswohlgefährdung.</p>
-        <p><em>Diese Unterscheidung ist fachlich zentral: Handeln Sie auf der Grundlage von Fakten - nicht von Annahmen.</em></p>
-      </div>
-    </div>
-
-    <h3 class="section-title">Vorwissenscheck</h3>
-    <p class="text-muted">Fünf Aussagen - keine Fangfragen. Klicken Sie, was Sie für zutreffend halten. Sie erhalten direkt fachliches Feedback.</p>
-    <div id="precheck-wrap"></div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(1)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 2: Was bedeutet Recht in der SSA? -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-2" data-section="2">
-  <div class="card-header" onclick="toggleCard('sec-2')" role="button" tabindex="0">
-    <span class="card-icon">⚖️</span>
-    <div style="flex:1">
-      <div class="card-title">Was bedeutet „Recht" in der Schulsozialarbeit?</div>
-      <div class="text-muted text-small">Theorie · Orientierungsrahmen</div>
-    </div>
-    <span class="card-status status-open" id="status-2">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-theory">
-      <div class="block-label">📘 Theorie</div>
-      <p>Rechtliche Grundkenntnisse gehören zur professionellen Ausstattung jeder Fachkraft in der Sozialen Arbeit. Das bedeutet nicht, juristisch ausgebildet zu sein - es bedeutet, den eigenen Handlungsrahmen zu kennen.</p>
-      <p><strong>Recht als Orientierungsrahmen</strong> - nicht als Regelwerk zum Auswendiglernen: Recht schützt Kinder, Jugendliche, Familien, Fachkräfte und Institutionen. Es begrenzt Handlungsspielräume, aber es eröffnet sie auch. Eine Fachkraft, die ihren Rechtsrahmen kennt, kann sicherer und professioneller handeln.</p>
-      <p><strong>Recht ersetzt nicht pädagogisches Denken.</strong> Rechtlich zulässiges Handeln ist nicht automatisch sozialpädagogisch sinnvoll. Sozialpädagogisch sinnvolles Handeln muss sich aber immer auch am Recht orientieren.</p>
-      <p><strong>Rechtliche Sicherheit entsteht nicht durch Panik, sondern durch Struktur.</strong> Wer fachlich reflektiert dokumentiert, Beratung einholt und abgestimmt handelt, ist gut aufgestellt - auch wenn Fragen offen bleiben.</p>
-    </div>
-
-    <div class="block-law">
-      <div class="block-label">§ Rechtsgrundlagen im Überblick</div>
-      <p>Die wichtigsten Rechtsgrundlagen für Schulsozialarbeit in Niedersachsen:</p>
-      <ul style="margin-left:1.2rem;font-size:.9rem;line-height:1.9;">
-        <li><strong><strong>SGB VIII § 13a</strong> - Schulsozialarbeit: zentrale Bundesrechtsgrundlage für sozialpädagogische Angebote am Ort Schule; § 13 SGB VIII bleibt als Jugendsozialarbeit besonders bei Benachteiligung und Übergängen ergänzend relevant</li>
-        <li><strong>SGB VIII § 8a</strong> - Schutzauftrag bei Kindeswohlgefährdung</li>
-        <li><strong>SGB VIII § 8b</strong> - Anspruch auf fachliche Beratung (insoweit erfahrene Fachkraft)</li>
-        <li><strong>SGB VIII § 65</strong> - Besonderer Vertrauensschutz in der persönlichen Hilfe</li>
-        <li><strong>DSGVO</strong> - Datenschutzgrundverordnung: Grundsätze für den Umgang mit personenbezogenen Daten</li>
-        <li><strong>NSchG</strong> - Niedersächsisches Schulgesetz: Rahmenbedingungen für Arbeit im Schulkontext</li>
-        <li><strong>Niedersächsischer Rahmen „Soziale Arbeit in schulischer Verantwortung"</strong> - für Fachkräfte im Landesdienst sowie schulische Bezugserlasse relevant; bei kommunalen oder freien Trägern sind zusätzlich Kooperationsvereinbarungen und Trägervorgaben maßgeblich</li>
-      </ul>
-      <p class="text-muted text-small" style="margin-top:.5rem;">Hinweis: Dieses Modul bietet fachliche Orientierung. Es ersetzt keine individuelle Rechtsberatung. Aktuelle Fassungen der genannten Gesetze finden Sie unter gesetze-im-internet.de und im Niedersächsischen Vorschriftenportal.</p>
-    </div>
-
-    <div class="block-theory">
-      <div class="block-label">Wissenschaftsbox: Recht als professionelle Handlungssicherheit</div>
-      <p>Rechtliche Orientierung in der Schulsozialarbeit ist keine Nebenkompetenz. Sie verbindet Professionsethik, Kinderschutz, Datenschutz, Beteiligung und institutionelle Kooperation. Professionell ist nicht, jede Norm auswendig zu kennen, sondern rechtliche Risiken strukturiert zu erkennen, Zuständigkeiten zu klären, Beratung einzuholen und die eigene Entscheidung nachvollziehbar zu dokumentieren.</p>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Aufgabe: Mythos oder Fachlichkeit?</div>
-      <p>Bewerten Sie die folgenden Aussagen: <span style="color:var(--c-ok);font-weight:700">● Fachlich richtig</span> &nbsp; <span style="color:var(--c-warn);font-weight:700">● Teilweise / kommt drauf an</span> &nbsp; <span style="color:var(--c-danger);font-weight:700">● Fachlich problematisch</span></p>
-      <div class="ampel-grid" id="ampel-recht"></div>
-      <div class="btn-row">
-        <button class="btn btn-outline btn-sm" onclick="showSol('sol-ampel-recht')">Musterlösung anzeigen</button>
-      </div>
-      <div class="block-solution" id="sol-ampel-recht">
-        <div class="block-label">✅ Musterlösung</div>
-        <p><strong>„Datenschutz verhindert Hilfe"</strong> → Rot. Datenschutz sichert Vertrauen - und Vertrauen ist die Grundlage für Hilfe. Datenschutz und Hilfe schließen sich nicht aus.</p>
-        <p><strong>„Schulsozialarbeit ist für schwierige Schülerinnen und Schüler zuständig"</strong> → Rot. Schulsozialarbeit ist ein niedrigschwelliges Angebot für alle. Stigmatisierung ist mit dem Selbstverständnis der Profession unvereinbar.</p>
-        <p><strong>„Rechtliche Sicherheit braucht Struktur, Beratung und Dokumentation"</strong> → Grün. Genau das beschreibt professionellen Umgang mit Rechtsfragen.</p>
-        <p><strong>„Wenn ich rechtlich nicht sicher bin, entscheide ich lieber selbst schnell"</strong> → Rot. Bei Unsicherheit ist Beratung einzuholen - keine Einzelentscheidung unter Zeitdruck.</p>
-        <p><strong>„Recht begrenzt professionelles Handeln - und ermöglicht es zugleich"</strong> → Grün. Beide Seiten stimmen: Recht setzt Grenzen, bietet aber auch Handlungssicherheit.</p>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(2)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 3: Auftrag und Rolle -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-3" data-section="3">
-  <div class="card-header" onclick="toggleCard('sec-3')" role="button" tabindex="0">
-    <span class="card-icon">🎯</span>
-    <div style="flex:1">
-      <div class="card-title">Auftrag und Rolle der Schulsozialarbeit</div>
-      <div class="text-muted text-small">Theorie · Rollenklärung</div>
-    </div>
-    <span class="card-status status-open" id="status-3">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-theory">
-      <div class="block-label">📘 Theorie</div>
-      <p>Band 1 hat die Rolle der Schulsozialarbeit grundlegend geklärt. In Band 2 geht es nun darum: <em>Welche rechtlichen Grenzen und Verantwortlichkeiten prägen diese Rolle im Alltag?</em></p>
-      <p><strong>Schulsozialarbeit ist kein Anhängsel der Schule.</strong> Sie ist ein eigenständiges sozialpädagogisches Angebot im schulischen Kontext - mit eigenen fachlichen Prinzipien: Freiwilligkeit, Niedrigschwelligkeit, Vertraulichkeit, Ressourcenorientierung, Lebensweltorientierung und Partizipation.</p>
-      <p><strong>Der Unterschied zwischen schulischem Auftrag und sozialpädagogischem Auftrag ist entscheidend.</strong> Schule hat Bildungs- und Erziehungsauftrag. Sie kann Anwesenheitspflichten durchsetzen und Noten vergeben. Schulsozialarbeit hat keinen Disziplinierungsauftrag. Sie bietet Beratung, Unterstützung, Vermittlung und Prävention - auf Basis von Vertrauen und Freiwilligkeit.</p>
-      <p><strong>Erwartungen von Lehrkräften sind kein Auftrag.</strong> Eine Lehrkraft, die möchte, dass Sie ein Gespräch über Schulpflicht mit den Eltern führen, formuliert eine Erwartung - keinen fachlichen Auftrag. Rollenklarheit schützt Kinder und Jugendliche, Eltern und die Fachkraft selbst.</p>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Aufgabe: Rollenklärungsmatrix</div>
-      <p>Klicken Sie bei jeder Aussage, wer dafür in der Regel primär zuständig ist. Mehrere Rollen können möglich sein.</p>
-      <div id="role-matrix-wrap"></div>
-      <div class="btn-row">
-        <button class="btn btn-outline btn-sm" onclick="showSol('sol-role')">Musterlösung anzeigen</button>
-      </div>
-      <div class="block-solution" id="sol-role">
-        <div class="block-label">✅ Musterlösung</div>
-        <p><strong>Beurteilung des Lernstands:</strong> Lehrkraft.<br>
-        <strong>Niedrigschwellige Einzelberatung:</strong> Schulsozialarbeit.<br>
-        <strong>Hausbesuch bei Schulabsentismus:</strong> Je nach Auftrag: Schulleitung informiert, ggf. Jugendamt - nicht primär Schulsozialarbeit.<br>
-        <strong>Mitteilung an das Jugendamt bei gewichtigen Anhaltspunkten:</strong> nicht reflexartig, sondern nach Schutzkonzept, Trägerschaft und Dienstweg. In der Regel: fachliche Einschätzung, Leitung/Fachberatung, ggf. insoweit erfahrene Fachkraft, Einbezug der Betroffenen soweit schutzverträglich.<br>
-        <strong>Klassenkonferenz leiten:</strong> Schulleitung / Lehrkraft.<br>
-        <strong>Vermittlung zu externen Hilfen:</strong> Schulsozialarbeit in Absprache mit Eltern und ggf. Jugendamt.<br>
-        <strong>Elterngespräch bei Verhaltensauffälligkeit:</strong> Lehrkraft, ggf. mit Unterstützung der Schulsozialarbeit auf Wunsch der Eltern oder des Kindes.</p>
-      </div>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Aufgabe: Fehleranalyse - Rollenverwirrung</div>
-      <p>Eine Berufseinsteigerin beschreibt ihren Alltag. Was ist fachlich problematisch? Klicken Sie auf „Analyse", um Ihre Einschätzung zu sehen.</p>
-      <div id="error-analysis-wrap"></div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(3)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 4: Datenschutz und Schweigepflicht -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-4" data-section="4">
-  <div class="card-header" onclick="toggleCard('sec-4')" role="button" tabindex="0">
-    <span class="card-icon">🔒</span>
-    <div style="flex:1">
-      <div class="card-title">Datenschutz, Schweigepflicht und Vertrauensschutz</div>
-      <div class="text-muted text-small">Theorie · Datenschutz-Minifälle</div>
-    </div>
-    <span class="card-status status-open" id="status-4">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-theory">
-      <div class="block-label">📘 Theorie</div>
-      <p><strong>Vertrauen ist die Grundlage.</strong> Kinder, Jugendliche und Eltern wenden sich an Schulsozialarbeit, weil sie darauf vertrauen, dass das Gespräch vertraulich bleibt. Dieses Vertrauen ist nicht verhandelbar - es ist die Bedingung für jede wirksame Beratung.</p>
-      <p><strong>Schweigepflicht</strong> bedeutet: Informationen, die im Vertrauensverhältnis mitgeteilt wurden, dürfen nicht ohne Weiteres weitergegeben werden - auch nicht an Lehrkräfte, Schulleitung oder Eltern. Der besondere Vertrauensschutz ist unter anderem in § 65 SGB VIII geregelt; je nach Beschäftigungsmodell kommen außerdem Sozialdatenschutz, Datenschutzrecht, § 203 StGB, § 4 KKG, Dienstanweisungen und Trägervereinbarungen hinzu.</p>
-      <p><strong>Datenschutz (DSGVO)</strong> schützt personenbezogene Daten. Dazu gehört alles, was eine Person identifizierbar macht: Name, Fallschilderungen, Fotos, Gesprächsnotizen. Auch mündlich Mitgeteiltes ist in der Dokumentation zu schützen.</p>
-      <p><strong>Einwilligung</strong> ist in vielen Fällen die rechtliche Grundlage für Datenweitergabe. Sie muss freiwillig, informiert und dokumentiert sein. Bei Minderjährigen sind je nach Alter und Reife sowohl Kinder/Jugendliche als auch Sorgeberechtigte zu beteiligen.</p>
-      <p><strong>Grenzen der Vertraulichkeit</strong>: Vertraulichkeit ist nicht grenzenlos. Bei gewichtigen Anhaltspunkten für eine Kindeswohlgefährdung kann und muss Vertraulichkeit zurücktreten - aber strukturiert, nicht voreilig. Dies wird in Abschnitt 5 vertieft.</p>
-    </div>
-
-    <div class="block-law">
-      <div class="block-label">§ Rechtlicher Bezug</div>
-      <p><strong>§ 65 SGB VIII</strong>: Anvertraute Sozialdaten in der persönlichen und erzieherischen Hilfe stehen unter besonderem Vertrauensschutz. Die Norm ist eng mit dem Sozialdatenschutz verbunden und muss je nach Trägerschaft, Dienstweg und konkreter Aufgabe sorgfältig ausgelegt werden. Grundsatz: Weitergabe nur mit tragfähiger Einwilligung oder gesetzlicher Grundlage.</p>
-      <p><strong>DSGVO Art. 5 und Art. 6</strong>: Personenbezogene Daten müssen rechtmäßig, transparent, zweckgebunden, auf das notwendige Maß begrenzt und sicher verarbeitet werden. Jede Verarbeitung braucht eine Rechtsgrundlage.</p>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Datenschutz-Minifälle</div>
-      <p>Lesen Sie die Situation und wählen Sie die fachlich passendste Reaktion.</p>
-      <div id="privacy-cases-wrap"></div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(4)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 5: Schutzauftrag -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-5" data-section="5">
-  <div class="card-header" onclick="toggleCard('sec-5')" role="button" tabindex="0">
-    <span class="card-icon">🛡</span>
-    <div style="flex:1">
-      <div class="card-title">Schutzauftrag als Grundorientierung</div>
-      <div class="text-muted text-small">Theorie · Entscheidungsbaum</div>
-    </div>
-    <span class="card-status status-open" id="status-5">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-theory">
-      <div class="block-label">📘 Theorie</div>
-      <p><strong>Was bedeutet Kindeswohlgefährdung grundsätzlich?</strong> Kindeswohlgefährdung meint eine erhebliche Beeinträchtigung des körperlichen, geistigen oder seelischen Wohls eines Kindes oder Jugendlichen - durch Vernachlässigung, körperliche oder seelische Misshandlung, sexuellen Missbrauch oder andere schwerwiegende Formen von Gefährdung.</p>
-      <p><strong>Bauchgefühl ernst nehmen - fachlich prüfen.</strong> Ein Gefühl der Sorge ist ein wichtiges professionelles Signal. Es ist aber keine ausreichende Grundlage für Handlungen. Zwischen Sorge und Handlung braucht es fachliche Einschätzung.</p>
-      <p><strong>Gewichtige Anhaltspunkte</strong> sind konkret beobachtbare oder berichtete Zeichen, die auf eine mögliche Gefährdung hinweisen können: z. B. unerklärliche Verletzungen, starke Verhaltensveränderungen, Hinweise auf häusliche Gewalt, Vernachlässigungszeichen oder direkte Aussagen des Kindes.</p>
-      <p><strong>Dokumentation</strong> ist kein Selbstzweck. Sie schützt das Kind (Verlauf ist nachvollziehbar), die Fachkraft (Handeln ist begründbar) und die Institution (Prozesse sind transparent).</p>
-      <p><strong>Nie allein entscheiden.</strong> Bei Verdacht auf Kindeswohlgefährdung ist Beratung einzuholen - zunächst intern (Leitung, Fachberatung), dann ggf. bei einer insoweit erfahrenen Fachkraft (§ 8b SGB VIII). Diese Beratung kann zunächst anonymisiert erfolgen.</p>
-      <p class="text-muted text-small">Hinweis: Die strukturierte Gefährdungseinschätzung wird in Band 4 vertieft. Dieses Modul vermittelt die Grundorientierung.</p>
-    </div>
-
-    <div class="block-law">
-      <div class="block-label">§ SGB VIII § 8a - Schutzauftrag</div>
-      <p>§ 8a SGB VIII regelt den Schutzauftrag vor allem für Jugendamt und Träger der Jugendhilfe. Für Schulsozialarbeit ist entscheidend, nach Trägerschaft und Schutzkonzept zu prüfen: Liegen gewichtige Anhaltspunkte vor? Wer ist dienstlich einzubeziehen? Ist eine insoweit erfahrene Fachkraft hinzuzuziehen? Sorgeberechtigte und junge Menschen werden einbezogen, soweit der Schutz dadurch nicht gefährdet wird.</p>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Entscheidungsbaum: Was tun?</div>
-      <p>Zurück zu Mia: Sie hat das Gespräch geführt. Was ist Ihr nächster Schritt?</p>
-      <div id="decision-tree-wrap"></div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(5)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 6: Der 5-Schritte-Kompass -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-6" data-section="6">
-  <div class="card-header" onclick="toggleCard('sec-6')" role="button" tabindex="0">
-    <span class="card-icon">🧭</span>
-    <div style="flex:1">
-      <div class="card-title">Der 5-Schritte-Kompass</div>
-      <div class="text-muted text-small">Wiederkehrender Prüfrahmen · Anwendung auf Mias Fall</div>
-    </div>
-    <span class="card-status status-open" id="status-6">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <p>Dieser Kompass begleitet Sie durch Band 2. Er strukturiert professionelles Denken in schwierigen Situationen - ohne vorzuschreiben, was im Einzelfall zu tun ist.</p>
-    <div class="kompass-wrap">
-      <div class="kompass-step"><div class="kompass-nr">1</div><div class="kompass-label">Wahrnehmen</div><div class="kompass-desc">Was wurde beobachtet? Was wurde anvertraut? Was ist Vermutung?</div></div>
-      <div class="kompass-step"><div class="kompass-nr">2</div><div class="kompass-label">Einordnen</div><div class="kompass-desc">Welche fachliche Bedeutung hat das? Welche rechtlichen Aspekte sind berührt?</div></div>
-      <div class="kompass-step"><div class="kompass-nr">3</div><div class="kompass-label">Schützen</div><div class="kompass-desc">Welche Informationen sind vertraulich? Wer muss geschützt werden?</div></div>
-      <div class="kompass-step"><div class="kompass-nr">4</div><div class="kompass-label">Beraten</div><div class="kompass-desc">Wen kann oder muss ich hinzuziehen? Anonymisierte Fachberatung sinnvoll?</div></div>
-      <div class="kompass-step"><div class="kompass-nr">5</div><div class="kompass-label">Handeln</div><div class="kompass-desc">Was ist der nächste fachlich vertretbare Schritt? Was wird dokumentiert?</div></div>
-    </div>
-
-    <div class="block-task">
-      <div class="block-label">✏ Anwendung: Mias Fall mit dem Kompass</div>
-      <p>Wenden Sie den Kompass auf Mias Fall an. Notieren Sie in den Feldern, was Sie konkret wahrnehmen, einordnen, schützen, beraten und tun würden. Ihre Eingaben werden lokal gespeichert.</p>
-      <div class="reflex-questions" id="kompass-application"></div>
-      <div class="btn-row">
-        <button class="btn btn-outline btn-sm" onclick="showSol('sol-kompass')">Orientierungshilfe anzeigen</button>
-      </div>
-      <div class="block-solution" id="sol-kompass">
-        <div class="block-label">✅ Orientierungshilfe</div>
-        <p><strong>1. Wahrnehmen:</strong> Beobachtet: Angespanntheit, Rückzug, Müdigkeit, Fehlzeiten. Anvertraut: Streit zu Hause, Schlafprobleme, Angst. Unklar: Art und Schwere der Situation zu Hause.<br>
-        <strong>2. Einordnen:</strong> Mögliche Belastungssituation. Gewichtige Anhaltspunkte für Gefährdung noch nicht gesichert, aber Sorge ist fachlich ernst zu nehmen. Vertraulichkeit der anvertrauten Informationen beachten.<br>
-        <strong>3. Schützen:</strong> Das Anvertraute bleibt vertraulich. Die Beobachtungen der Klassenlehrerin sind davon getrennt zu behandeln. Mia hat ein Recht darauf, dass ihre Aussagen nicht ohne ihre Kenntnis weitergegeben werden.<br>
-        <strong>4. Beraten:</strong> Interner Austausch mit Leitung. Ggf. anonymisierte Beratung durch insoweit erfahrene Fachkraft. Noch kein direkter Jugendamtskontakt - außer wenn sich konkrete Hinweise auf Gefährdung verdichten.<br>
-        <strong>5. Handeln:</strong> Kontakt zu Mia halten. Weiteres Gespräch anbieten. Beobachtungen dokumentieren. Situation beobachten. Keine voreilige Weitergabe - aber kein Wegschauen.</p>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(6)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 7: Schnittstellen -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-7" data-section="7">
-  <div class="card-header" onclick="toggleCard('sec-7')" role="button" tabindex="0">
-    <span class="card-icon">🔗</span>
-    <div style="flex:1">
-      <div class="card-title">Schulische Schnittstellen und Zuständigkeiten</div>
-      <div class="text-muted text-small">Theorie · Ampelbewertung · Zuordnung</div>
-    </div>
-    <span class="card-status status-open" id="status-7">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-theory">
-      <div class="block-label">📘 Theorie</div>
-      <p>Schulsozialarbeit arbeitet nicht im Alleingang. Kooperation ist strukturell notwendig - und rechtlich mitgeformt. Die folgende Übersicht beschreibt die wichtigsten Schnittstellen und ihre Grenzen.</p>
-    </div>
-
-    <div class="role-matrix">
-      <table class="role-table" aria-label="Schnittstellenübersicht">
-        <thead><tr><th>Schnittstelle</th><th>Zusammenarbeit bedeutet …</th><th>Grenze / Besonderheit</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Lehrkräfte</strong></td><td>Informationsaustausch über beobachtbares Verhalten; gemeinsame Sorge um ein Kind; Abstimmung über Unterstützungsmaßnahmen</td><td>Keine Weitergabe anvertrauter Informationen ohne Einwilligung. Schulsozialarbeit berät - diszipliniert nicht.</td></tr>
-          <tr><td><strong>Schulleitung</strong></td><td>Dienstaufsicht (bei schulischer Trägerschaft); strategische Absprachen; Einbezug bei Schutzfällen</td><td>Schulleitung ist kein unbegrenzter Empfänger von Fallinformationen. Träger- und Auftragsverhältnis ist zu klären.</td></tr>
-          <tr><td><strong>Eltern / Sorgeberechtigte</strong></td><td>Beratung, Unterstützung, Einbezug bei Hilfeplanung; Einwilligung für Datenweitergabe</td><td>Bei Gefährdung durch Eltern kann Einbezug im Einzelfall eingeschränkt sein. Elternrechte und Kindesschutz können in Spannung stehen.</td></tr>
-          <tr><td><strong>Jugendamt</strong></td><td>Meldung bei gesicherter oder dringend vermuteter Gefährdung; Hilfeplanung; Beratung durch insoweit erfahrene Fachkraft</td><td>Nicht jede Sorge führt sofort zum Jugendamt. Strukturierte Prüfung geht vor.</td></tr>
-          <tr><td><strong>Externe Beratungsstellen</strong></td><td>Weitervermittlung, Kooperation, gemeinsame Fallbesprechung (anonymisiert oder mit Einwilligung)</td><td>Zuständigkeit bleibt klären. Schulsozialarbeit vermittelt - übernimmt nicht fremde Aufgaben.</td></tr>
-          <tr><td><strong>Polizei, Medizin, Justiz</strong></td><td>Bei schwerwiegenden Straftatverdachten, medizinischen Notfällen oder richterlichen Anordnungen</td><td>Hier gilt besondere Sorgfalt. Rechtliche Beratung vor eigenständigem Handeln.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="text-muted text-small">Hinweis: Netzwerkarbeit und Sozialraumkooperation werden in Band 8 vertieft.</p>
-
-    <div class="block-task">
-      <div class="block-label">✏ Aufgabe: Ampel - Schnittstellenhandeln</div>
-      <p>Bewerten Sie die folgenden Handlungen: fachlich passend (grün), kontextabhängig (gelb) oder fachlich problematisch (rot).</p>
-      <div class="ampel-grid" id="ampel-schnittstellen"></div>
-      <div class="btn-row">
-        <button class="btn btn-outline btn-sm" onclick="showSol('sol-ampel-s')">Musterlösung anzeigen</button>
-      </div>
-      <div class="block-solution" id="sol-ampel-s">
-        <div class="block-label">✅ Musterlösung</div>
-        <p><strong>„Ich berichte der Klassenlehrerin alles, was Mia mir erzählt hat"</strong> → Rot. Das verletzt Schweigepflicht und Vertrauensschutz. Nur mit Einwilligung oder bei Gefährdungslage vertretbar.</p>
-        <p><strong>„Ich spreche die Situation mit meiner Leitung an - ohne Namen zu nennen"</strong> → Grün. Anonymisierte interne Beratung ist fachlich geboten und schützt alle Beteiligten.</p>
-        <p><strong>„Ich melde den Fall sofort dem Jugendamt"</strong> → Gelb bis Rot (kontextabhängig). Wenn keine gesicherten gewichtigen Anhaltspunkte vorliegen, ist dieser Schritt zu früh. Strukturierte Prüfung geht vor.</p>
-        <p><strong>„Ich frage Mia, ob sie einem Gespräch mit ihren Eltern zustimmen würde"</strong> → Grün. Beteiligung des Kindes ist fachlich richtig, wenn keine Gefährdung durch die Eltern zu befürchten ist.</p>
-        <p><strong>„Ich dokumentiere meine Beobachtungen und das Gespräch sorgfältig"</strong> → Grün. Unverzichtbarer Teil professionellen Handelns.</p>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(7)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 8: Reflexion -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-8" data-section="8">
-  <div class="card-header" onclick="toggleCard('sec-8')" role="button" tabindex="0">
-    <span class="card-icon">💭</span>
-    <div style="flex:1">
-      <div class="card-title">Reflexion: Mein Auftrag - meine Grenzen</div>
-      <div class="text-muted text-small">Selbstreflexion · lokale Speicherung</div>
-    </div>
-    <span class="card-status status-open" id="status-8">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <div class="block-reflex">
-      <div class="block-label">💭 Reflexionsauftrag</div>
-      <p>Ihre Eingaben werden lokal in diesem Browser gespeichert. Sie werden nicht automatisch übertragen. Schreiben Sie für sich - nicht für eine Beurteilung.</p>
-    </div>
-    <div class="reflex-questions" id="reflexion-wrap"></div>
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(8)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 9: Gelingensnachweis -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-9" data-section="9">
-  <div class="card-header" onclick="toggleCard('sec-9')" role="button" tabindex="0">
-    <span class="card-icon">🏆</span>
-    <div style="flex:1">
-      <div class="card-title">Gelingensnachweis: Modul 1</div>
-      <div class="text-muted text-small">16 Fragen · Multiple Choice · Fallentscheidung · Zuordnung</div>
-    </div>
-    <span class="card-status status-open" id="status-9">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-    <p>Beantworten Sie alle 16 Fragen. Klicken Sie danach auf „Auswertung anzeigen". Ihre Ergebnisse werden lokal gespeichert.</p>
-    <div id="quiz-wrap"></div>
-    <div class="btn-row">
-      <button class="btn btn-primary" id="quizSubmitBtn" onclick="submitQuiz()">Auswertung anzeigen</button>
-    </div>
-    <div class="result-box" id="quiz-result"></div>
-    <div class="btn-row" id="quizNextBtnWrap" style="display:none;">
-      <button class="btn btn-secondary" onclick="completeSection(9)">Abschnitt abschließen ▶</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- ABSCHNITT 10: Abschluss -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="card open" id="sec-10" data-section="10">
-  <div class="card-header" onclick="toggleCard('sec-10')" role="button" tabindex="0">
-    <span class="card-icon">✅</span>
-    <div style="flex:1">
-      <div class="card-title">Abschluss: Ergebnis sichern und Kompetenzbilanz</div>
-      <div class="text-muted text-small">Checklisten · Kompetenzselbsteinschätzung · Ergebnissicherung</div>
-    </div>
-    <span class="card-status status-open" id="status-10">offen</span>
-    <span class="card-toggle">▾</span>
-  </div>
-  <div class="card-body">
-
-    <h3 style="color:var(--c-primary);margin-bottom:.7rem;">7 Kernsätze aus Modul 1</h3>
-    <ul class="summary-list">
-      <li>Recht ist Orientierungsrahmen - kein Korsett. Es schützt Kinder, Familien und Fachkräfte zugleich.</li>
-      <li>Schulsozialarbeit hat einen eigenständigen sozialpädagogischen Auftrag - keinen schulischen Disziplinierungsauftrag.</li>
-      <li>Vertrauen ist die Grundlage jeder Beratung. Schweigepflicht und Datenschutz schützen dieses Vertrauen.</li>
-      <li>Vertraulichkeit ist nicht grenzenlos. Bei gewichtigen Anhaltspunkten für eine Kindeswohlgefährdung muss sie im Einzelfall zurücktreten - strukturiert, nicht reflexartig.</li>
-      <li>Nicht jede Sorge ist schon eine Kindeswohlgefährdung. Aber jede ernsthafte Sorge verdient fachliche Prüfung.</li>
-      <li>Beratung einholen ist kein Zeichen von Schwäche, sondern Ausdruck professionellen Handelns.</li>
-      <li>Der 5-Schritte-Kompass hilft: wahrnehmen, einordnen, schützen, beraten, handeln.</li>
-    </ul>
-
-    <hr class="divider">
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">☐ Checkliste: Bevor Sie Informationen weitergeben</h3>
-    <ul class="checklist">
-      <li>Habe ich geklärt, ob die Information anvertraut oder beobachtet wurde?</li>
-      <li>Liegt eine Einwilligung der betroffenen Person vor - oder eine rechtliche Grundlage ohne Einwilligung?</li>
-      <li>Ist die Weitergabe wirklich notwendig - oder reicht anonymisierte Beratung?</li>
-      <li>Habe ich die betroffene Person so weit wie möglich einbezogen?</li>
-      <li>Ist der Empfänger der Information wirklich zuständig für diesen Sachverhalt?</li>
-      <li>Habe ich die Weitergabe dokumentiert?</li>
-    </ul>
-
-    <hr class="divider">
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">☐ Checkliste: Wenn Sie eine mögliche Gefährdung vermuten</h3>
-    <ul class="checklist">
-      <li>Was habe ich konkret wahrgenommen? Was ist Beobachtung - was ist Vermutung?</li>
-      <li>Gibt es gewichtige Anhaltspunkte - oder erst eine diffuse Sorge?</li>
-      <li>Habe ich die Situation dokumentiert?</li>
-      <li>Habe ich interne Beratung (Leitung, Kollegium) eingeholt?</li>
-      <li>Ist eine anonymisierte Beratung durch eine insoweit erfahrene Fachkraft sinnvoll?</li>
-      <li>Bin ich mit den nächsten Schritten abgestimmt - oder handle ich allein?</li>
-    </ul>
-
-    <hr class="divider">
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">⭐ Kompetenzselbsteinschätzung</h3>
-    <p class="text-muted">Bewerten Sie ehrlich: Wie sicher fühlen Sie sich in den folgenden Bereichen? (1 = noch unsicher, 5 = sicher)</p>
-    <div id="kompe-wrap"></div>
-
-    <hr class="divider">
-
-
-    <hr class="divider">
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">🎓 Bewertungsraster für Hochschule, Weiterbildung und Praxisanleitung</h3>
-    <p class="text-muted">Dieses Raster kann für Portfolio, Seminarleistung, Praxisanleitung oder Zertifikatskurs genutzt werden.</p>
-    <table class="quality-rubric" aria-label="Bewertungsraster für den Gelingensnachweis">
-      <thead><tr><th>Kriterium</th><th>Erfüllt</th><th>Teilweise erfüllt</th><th>Noch zu überarbeiten</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Rechtsorientierung</strong></td><td>Zentrale Normen werden korrekt benannt und fallbezogen eingeordnet.</td><td>Normen werden genannt, aber nicht ausreichend auf den Fall bezogen.</td><td>Rechtsnormen werden verwechselt oder zu absolut angewendet.</td></tr>
-        <tr><td><strong>Fallanalyse</strong></td><td>Beobachtung, Anvertrautes, Vermutung und Bewertung werden klar getrennt.</td><td>Trennung ist erkennbar, aber noch unscharf.</td><td>Vermutungen werden als Fakten behandelt.</td></tr>
-        <tr><td><strong>Datenschutz und Vertrauensschutz</strong></td><td>Einwilligung, Zweckbindung, Schweigepflicht und Grenzen der Vertraulichkeit werden abgewogen.</td><td>Vertraulichkeit wird erwähnt, aber nicht differenziert.</td><td>Informationen würden vorschnell weitergegeben.</td></tr>
-        <tr><td><strong>Schutzauftrag</strong></td><td>Gewichtige Anhaltspunkte, Beratung und Dienstweg werden strukturiert geprüft.</td><td>Kinderschutz wird erkannt, aber die nächsten Schritte bleiben unklar.</td><td>Es erfolgt entweder Bagatellisierung oder vorschnelle Meldung ohne Prüfung.</td></tr>
-        <tr><td><strong>Transfer</strong></td><td>Der 5-Schritte-Kompass wird in eine realistische Praxisroutine übertragen.</td><td>Transfer ist plausibel, aber noch allgemein.</td><td>Es bleibt bei abstrakten Merksätzen ohne Handlungsplanung.</td></tr>
-      </tbody>
-    </table>
-
-    <hr class="divider">
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">📚 Literatur und Quellenhinweise</h3>
-    <ul class="source-list">
-      <li>Sozialgesetzbuch VIII: § 13a Schulsozialarbeit, § 8a Schutzauftrag, § 8b fachliche Beratung, § 65 besonderer Vertrauensschutz.</li>
-      <li>Gesetz zur Kooperation und Information im Kinderschutz (KKG), insbesondere § 4 Beratung und Übermittlung von Informationen durch Geheimnisträger bei Kindeswohlgefährdung.</li>
-      <li>Datenschutz-Grundverordnung (DSGVO), insbesondere Art. 5 Grundsätze der Verarbeitung und Art. 6 Rechtmäßigkeit der Verarbeitung.</li>
-      <li>Niedersachsen: Soziale Arbeit in schulischer Verantwortung, schulische Bezugserlasse, Schutzkonzepte und Vorgaben des jeweiligen Trägers oder Dienstherrn.</li>
-      <li>DBSH: Berufsethik und professionelle Standards Sozialer Arbeit.</li>
-      <li>Kooperationsverbund Schulsozialarbeit: fachliche Leitlinien und Qualitätsentwicklung.</li>
-      <li>Speck, Karsten: Schulsozialarbeit. Eine Einführung.</li>
-      <li>Deinet, Ulrich; Sturzenhecker, Benedikt u. a.: Sozialraumorientierung, Jugendarbeit und Schule.</li>
-    </ul>
-
-    <h3 style="color:var(--c-primary);margin:.8rem 0 .5rem;">📬 Ergebnis sichern</h3>
-    <div class="block-reflex">
-      <div class="block-label">🔒 Datenschutzhinweis</div>
-      <p>Ihre Eingaben werden nur übertragen, wenn Sie den Button „Ergebnis absenden" anklicken. Ohne hinterlegte Google-Sheets-Anbindung bleiben Ihre Antworten ausschließlich lokal in diesem Browser gespeichert. Geben Sie keine besonders sensiblen personenbezogenen Daten in Freitextfelder ein.</p>
-    </div>
-    <div class="form-group">
-      <label for="learnerId">Kurs-ID, Gruppe oder Lernenden-ID (optional)</label>
-      <input type="text" id="learnerId" placeholder="z. B. Kurs-2025 oder Gruppe-A" maxlength="80">
-    </div>
-    <p class="text-muted text-small">Name, E-Mail-Adresse und Absenden befinden sich im blauen Kopfbereich. Ergänzen Sie hier nur bei Bedarf Kurs-ID, Gruppe oder Lernenden-ID. Für das Absenden sind ein Name oder Kürzel und eine gültige E-Mail-Adresse erforderlich. Wenn Sie anonym arbeiten sollen, verwenden Sie ein vereinbartes Kürzel und eine dafür vorgesehene Kontaktadresse.</p>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="completeSection(10)">✅ Modul abschließen</button>
-    </div>
-
-    <hr class="divider">
-    <div class="block-theory">
-      <div class="block-label">📘 Ausblick: Band 2, Modul 2</div>
-      <p>Im nächsten Modul vertiefen Sie Datenschutz, Schweigepflicht und Vertrauensschutz. Sie lernen, wie Einwilligungen rechtssicher eingeholt werden, wie mit sensiblen Informationen in Gesprächsnotizen umgegangen wird und wo die konkreten Grenzen des fachlichen Austauschs mit Lehrkräften liegen.</p>
-    </div>
-    <p class="text-muted text-small" style="margin-top:1rem;text-align:center;">Dieses Modul bietet fachliche Orientierung für Studium und Berufseinstieg. Es ersetzt keine individuelle Rechtsberatung. Bei konkreten Rechtsfragen wenden Sie sich an Ihren Träger, Ihre Fachberatung oder eine zuständige Stelle.</p>
-  </div>
-</div>
-
-</main>
-
-<script>
-/* ══════════════════════════════════════════════════════
-   GOOGLE SHEETS ANBINDUNG (vorbereitet, nicht aktiv)
-   ══════════════════════════════════════════════════════
-   Empfohlene Google-Sheets-Spalten:
-   timestamp, courseTitle, bandNumber, bandTitle,
-   moduleNumber, moduleTitle, learnerName, learnerId,
-   progressPercent, completedSections, quizScore,
-   quizMaxScore, quizPercent, quizPassed,
-   preCheckAnswers, trafficLightAnswers, roleMatrixAnswers,
-   decisionTreeAnswers, privacyCaseAnswers,
-   reflectionAnswers, finalCompetenceSelfAssessment, userAgent
-*/
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyl5mP0PMrxNB5lbc2z5hjwVJZrdIy-F0440XDpz65LxfQgR4_0WJv5lLz6QMmT1_veqQ/exec";
-
-/* ── State ──────────────────────────────────────────── */
-const TOTAL_SECTIONS = 10;
-let completedSections = [];
-let preCheckAnswers = {};
-let trafficLightAnswers = {};
-let roleMatrixAnswers = {};
-let decisionTreeAnswers = {};
-let privacyCaseAnswers = {};
-let reflectionAnswers = {};
-let kompetenzAnswers = {};
-let quizAnswers = {};
-let quizScore = 0;
-let quizSubmitted = false;
-
-/* ── Daten-Definitionen ─────────────────────────────── */
-const PRECHECK_ITEMS = [
-  { id:'pc1', text:'Schulsozialarbeit ist verpflichtet, alles, was ihr anvertraut wird, an die Schulleitung weiterzugeben.', correct:'nein', fb_nein:'Richtig. Anvertraute Informationen unterliegen dem Vertrauensschutz (§ 65 SGB VIII). Eine automatische Weitergabe an die Schulleitung ist fachlich und rechtlich nicht zulässig.', fb_ja:'Nicht zutreffend. Schweigepflicht und Vertrauensschutz stehen einer automatischen Weitergabe entgegen. Ausnahmen gelten nur in engen Grenzen.', fb_kommt:'Die Schweigepflicht gilt grundsätzlich. Ausnahmen sind an enge Voraussetzungen geknüpft.' },
-  { id:'pc2', text:'Wenn eine Schülerin oder ein Schüler mir von Problemen zu Hause erzählt, muss ich sofort das Jugendamt informieren.', correct:'nein', fb_nein:'Richtig. Eine sofortige Meldung ist nur bei gewichtigen Anhaltspunkten für eine Kindeswohlgefährdung geboten - nach strukturierter Prüfung und Beratung, nicht reflexartig.', fb_ja:'Nicht zutreffend. Nur bei gewichtigen Anhaltspunkten für Kindeswohlgefährdung ist das Jugendamt einzuschalten - und auch dann erst nach Prüfung und Beratung.', fb_kommt:'Die Antwort ist inhaltlich richtig: Es kommt auf die Schwere der Anhaltspunkte an. Wichtig ist: Erst prüfen, beraten, dann ggf. handeln.' },
-  { id:'pc3', text:'Datenschutz erschwert die sozialpädagogische Arbeit mehr, als er nützt.', correct:'nein', fb_nein:'Richtig. Datenschutz schützt das Vertrauen, das für Beratung unerlässlich ist. Er ist kein Hindernis, sondern eine Qualitätsvoraussetzung.', fb_ja:'Fachlich nicht haltbar. Datenschutz sichert das Vertrauen, ohne das keine Beratung funktioniert.', fb_kommt:'Der Datenschutz kann in Einzelfällen komplex sein - grundsätzlich ist er aber fachlicher Qualitätsstandard, kein Hindernis.' },
-  { id:'pc4', text:'Die Rollenklarheit der Schulsozialarbeit schützt auch die Kinder und Jugendlichen.', correct:'ja', fb_ja:'Richtig. Klare Rollen verhindern, dass Schulsozialarbeit für schulische Disziplinierung instrumentalisiert wird. Das schützt Vertrauen und Freiwilligkeit.', fb_nein:'Doch: Rollenklarheit verhindert, dass Schulsozialarbeit für schulische Kontrollaufgaben missbraucht wird - zum Schutz aller Beteiligten.', fb_kommt:'Grundsätzlich stimmt dies: Rollenklarheit schützt.' },
-  { id:'pc5', text:'Bei Unsicherheit über eine mögliche Gefährdung kann ich eine anonymisierte Beratung bei einer insoweit erfahrenen Fachkraft einholen.', correct:'ja', fb_ja:'Richtig. § 8b SGB VIII gibt Fachkräften einen Anspruch auf Beratung durch eine insoweit erfahrene Fachkraft - auch anonym.', fb_nein:'Doch: Anonymisierte Fachberatung (§ 8b SGB VIII) ist ausdrücklich vorgesehen und fachlich empfohlen.', fb_kommt:'Grundsätzlich ja: Anonymisierte Beratung ist immer möglich und oft sinnvoll.' }
-];
-
-const AMPEL_RECHT = [
-  { id:'ar1', text:'„Datenschutz verhindert Hilfe."', correct:'rot', fb_gruen:'Nicht zutreffend. Datenschutz sichert Vertrauen - und Vertrauen ist die Grundlage für Hilfe.', fb_gelb:'Eher rot: Diese Aussage beschreibt ein häufiges Missverständnis, das fachlich zu korrigieren ist.', fb_rot:'Richtig. Das ist ein verbreitetes Fehlverständnis. Datenschutz und Hilfe schließen sich nicht aus.' },
-  { id:'ar2', text:'„Schulsozialarbeit ist für schwierige Schülerinnen und Schüler zuständig."', correct:'rot', fb_gruen:'Nicht zutreffend. Das wäre stigmatisierend. Schulsozialarbeit ist ein niedrigschwelliges Angebot für alle.', fb_gelb:'Eher rot: Diese Vorstellung verengt und stigmatisiert das Angebot der Schulsozialarbeit.', fb_rot:'Richtig. Diese Sichtweise ist stigmatisierend und mit dem Professionsverständnis unvereinbar.' },
-  { id:'ar3', text:'„Rechtliche Sicherheit braucht Struktur, Beratung und Dokumentation."', correct:'gruen', fb_gruen:'Richtig. Das beschreibt die drei Säulen professionellen Umgangs mit rechtlichen Unsicherheiten.', fb_gelb:'Eher grün: Diese Aussage ist fachlich richtig.', fb_rot:'Nicht zutreffend. Diese Aussage ist fachlich korrekt und professionell.' },
-  { id:'ar4', text:'„Wenn ich rechtlich nicht sicher bin, entscheide ich lieber schnell selbst."', correct:'rot', fb_gruen:'Nicht zutreffend. Schnelle Eigenentscheidung bei Rechtsunsicherheit ist riskant. Beratung geht vor.', fb_gelb:'Eher rot: Rechtsunsicherheit erfordert Beratung - keine schnelle Einzelentscheidung.', fb_rot:'Richtig. Alleinige Schnellentscheidung bei Rechtsunsicherheit ist fachlich problematisch.' },
-  { id:'ar5', text:'„Recht begrenzt professionelles Handeln - und ermöglicht es zugleich."', correct:'gruen', fb_gruen:'Richtig. Recht schränkt ein und sichert ab. Beides stimmt - das ist die Dialektik des Rechts in der Sozialen Arbeit.', fb_gelb:'Eher grün: Diese Aussage ist differenziert und fachlich richtig.', fb_rot:'Nicht zutreffend. Diese differenzierte Sichtweise ist fachlich richtig.' }
-];
-
-const AMPEL_SCHNITTSTELLEN = [
-  { id:'as1', text:'„Ich berichte der Klassenlehrerin alles, was Mia mir erzählt hat."', correct:'rot', fb_gruen:'Nicht zutreffend. Das verletzt Schweigepflicht und Vertrauensschutz.', fb_gelb:'Eher rot: Anvertraute Informationen dürfen ohne Einwilligung nicht weitergegeben werden.', fb_rot:'Richtig. Das verstößt gegen die Schweigepflicht.' },
-  { id:'as2', text:'„Ich spreche die Situation anonym mit meiner Leitung ab."', correct:'gruen', fb_gruen:'Richtig. Interne anonymisierte Beratung ist fachlich geboten und schützt alle.', fb_gelb:'Eher grün: Das ist fachlich richtig.', fb_rot:'Nicht zutreffend. Das ist fachlich genau richtig.' },
-  { id:'as3', text:'„Ich melde den Fall sofort dem Jugendamt."', correct:'gelb', fb_gruen:'Nicht unbedingt. Ohne gesicherte Anhaltspunkte für Gefährdung ist dieser Schritt zu früh.', fb_gelb:'Richtig eingeordnet: Es hängt vom Einzelfall ab. Ohne gesicherte Anhaltspunkte geht Prüfung vor.', fb_rot:'Nicht pauschal rot: Bei gesicherter Gefährdung ist die Meldung geboten. Ohne Anhaltspunkte zu früh.' },
-  { id:'as4', text:'„Ich frage Mia, ob sie einem Gespräch mit ihren Eltern zustimmen würde."', correct:'gruen', fb_gruen:'Richtig. Beteiligung des Kindes ist fachlich geboten.', fb_gelb:'Eher grün: Beteiligung des Kindes ist richtig.', fb_rot:'Nicht zutreffend. Beteiligung des Kindes ist ein wichtiges Fachprinzip.' },
-  { id:'as5', text:'„Ich dokumentiere das Gespräch und meine Beobachtungen sorgfältig."', correct:'gruen', fb_gruen:'Richtig. Dokumentation ist unverzichtbarer Teil professionellen Handelns.', fb_gelb:'Eher grün: Dokumentation ist immer richtig.', fb_rot:'Nicht zutreffend. Dokumentation schützt Kind, Fachkraft und Institution.' }
-];
-
-const PRIVACY_CASES = [
-  { id:'pv1', situation:'Eine Lehrkraft fragt Sie: „Was hat Leon Ihnen eigentlich erzählt?" Sie haben Leon in der Einzelberatung. Er hat nichts von einer Weitergabe gesagt.', choices:[{ text:'Ich berichte dem Lehrer alles - er ist schließlich Klassenlehrer.', correct:false, fb:'Nein. Anvertraute Informationen bleiben ohne Einwilligung geschützt. Klassenlehrerfunktion allein ist keine rechtliche Grundlage für Datenweitergabe.' },{ text:'Ich sage: „Dazu kann ich nichts sagen - das unterliegt der Vertraulichkeit."', correct:true, fb:'Richtig. Sie schützen die Vertraulichkeit und benennen das klar. Das ist fachlich korrekt.' },{ text:'Ich frage Leon vorher, ob ich etwas weitergeben darf.', correct:true, fb:'Ebenfalls richtig. Einwilligung von Leon einholen - sofern das der Situation angemessen ist.' }] },
-  { id:'pv2', situation:'Eine Mutter ruft an und fragt, was ihre Tochter Ihnen in der Beratung erzählt hat. Die Tochter ist 15 Jahre alt.', choices:[{ text:'Ich gebe der Mutter alle Informationen - sie ist erziehungsberechtigt.', correct:false, fb:'Nicht zutreffend. Auch Sorgeberechtigte haben keinen Anspruch auf Inhalte aus der Vertrauensberatung. Das Vertrauensverhältnis zur Jugendlichen ist zu schützen.' },{ text:'Ich sage, dass ich zu Inhalten aus Beratungsgesprächen grundsätzlich keine Auskunft geben kann, und biete ein gemeinsames Gespräch an (wenn die Tochter zustimmt).', correct:true, fb:'Richtig. Vertrauensschutz geht vor - Einbezug der Eltern nur mit Einwilligung der Jugendlichen.' },{ text:'Ich sage der Mutter, dass ihre Tochter bei mir war, aber nichts Inhaltliches.', correct:true, fb:'Vertretbar: Schon die Tatsache eines Gesprächs kann sensibel sein. Im Zweifel auch das nicht ohne Einwilligung bestätigen.' }] },
-  { id:'pv3', situation:'Sie erfahren im Gespräch mit einem Schüler, dass er regelmäßig von einem älteren Bruder geschlagen wird. Er bittet Sie dringend, nichts weiterzusagen.', choices:[{ text:'Ich sage dem Schüler, dass ich das auf keinen Fall weitererzähle.', correct:false, fb:'Nicht korrekt. Bei konkreten Hinweisen auf körperliche Misshandlung darf und muss Vertraulichkeit zurücktreten. Das darf nicht versprochen werden.' },{ text:'Ich erkläre dem Schüler ruhig, dass ich mir das nicht allein ansehen kann - und dass ich Beratung einholen muss, zunächst anonym.', correct:true, fb:'Richtig. Transparenz gegenüber dem Schüler und strukturiertes Vorgehen: anonymisierte Beratung als erster Schritt.' },{ text:'Ich melde sofort alles dem Jugendamt.', correct:false, fb:'Zu voreilig. Erst strukturierte Prüfung, Beratung und Einbezug des Schülers - dann abgestimmtes Handeln.' }] },
-  { id:'pv4', situation:'Eine Kollegin aus dem Lehrerzimmer fragt Sie beim Mittagessen: „Was ist eigentlich mit Klara los? Ich mache mir Sorgen."', choices:[{ text:'Ich erzähle, was ich über Klara weiß - die Kollegin meint es ja gut.', correct:false, fb:'Nein. Gute Absichten ersetzen keine rechtliche Grundlage. Im informellen Gespräch dürfen keine Fallinformationen weitergegeben werden.' },{ text:'Ich sage: „Ich kann zu einzelnen Schülerinnen nichts sagen - aber wenn Sie konkrete Beobachtungen machen, bin ich gerne im Gespräch."', correct:true, fb:'Richtig. Sie schützen die Vertraulichkeit und bleiben kooperativ.' },{ text:'Ich gehe an einen ruhigeren Ort und sage dann etwas.', correct:false, fb:'Der Ort ändert nichts an der rechtlichen Lage. Ohne Einwilligung und fachliche Grundlage keine Weitergabe.' }] }
-];
-
-const DECISION_TREE = {
-  id:'dt1',
-  question: 'Sie haben das Gespräch mit Mia geführt. Sie wirkt belastet, hat von Streit zu Hause und Angst vor dem Heimweg berichtet. Es gibt keine konkreten Hinweise auf körperliche Gewalt. Was ist Ihr erster Schritt?',
-  options:[
-    { text:'Ich rufe sofort das Jugendamt an.', result:'<span class="fb-err feedback-box show">⚠️ <strong>Zu früh.</strong> Für einen Jugendamtskontakt braucht es gewichtige Anhaltspunkte für eine Kindeswohlgefährdung. Diese liegen hier noch nicht gesichert vor. Erst prüfen, beraten, dann handeln.</span>' },
-    { text:'Ich spreche intern mit meiner Leitung - anonym und strukturiert.', result:'<span class="fb-ok feedback-box show">✅ <strong>Fachlich richtig.</strong> Interner Austausch, anonymisiert, ist der erste Schritt. Er schützt Mia, Sie und die Institution.</span>' },
-    { text:'Ich erzähle der Klassenlehrerin von dem Gespräch - sie kennt Mia am besten.', result:'<span class="fb-err feedback-box show">⚠️ <strong>Fachlich problematisch.</strong> Das Gespräch unterliegt dem Vertrauensschutz. Die Klassenlehrerin ist kein berechtigter Empfänger anvertrauter Informationen ohne Einwilligung.</span>' },
-    { text:'Ich dokumentiere das Gespräch sorgfältig und behalte die Situation im Blick.', result:'<span class="fb-warn feedback-box show">🟡 <strong>Notwendig, aber nicht hinreichend.</strong> Dokumentation ist richtig. Aber bei dieser Sorge sollte auch interne Beratung eingeholt werden - nicht nur beobachten und warten.</span>' }
-  ]
-};
-
-const ROLE_MATRIX_ITEMS = [
-  { id:'rm1', text:'Beurteilung des Lernstands und Zeugnisnoten', answer:'Lehrkraft' },
-  { id:'rm2', text:'Niedrigschwellige Einzelberatung von Schüler:innen', answer:'Schulsozialarbeit' },
-  { id:'rm3', text:'Entscheidung über Schulausschluss oder Ordnungsmaßnahmen', answer:'Schulleitung' },
-  { id:'rm4', text:'Einwilligung in Hilfen zur Erziehung (HzE)', answer:'Eltern / Sorgeberechtigte' },
-  { id:'rm5', text:'Gefährdungsmeldung nach § 8a SGB VIII', answer:'Schulsozialarbeit (in Abstimmung)' },
-  { id:'rm6', text:'Vermittlung zu psychologischer Beratungsstelle', answer:'Schulsozialarbeit' }
-];
-
-const SORTING_ITEMS = [
-  { id:'si1', text:'Mia wirkt angespannt', cat:'beobachtet' },
-  { id:'si2', text:'Mia berichtet von Streit zu Hause', cat:'anvertraut' },
-  { id:'si3', text:'Mia hat vielleicht schon öfter schlechte Erfahrungen gemacht', cat:'unklar' },
-  { id:'si4', text:'Mia fehlt häufiger in der Schule', cat:'beobachtet' },
-  { id:'si5', text:'Mia sagt, sie habe manchmal Angst nach Hause zu gehen', cat:'anvertraut' },
-  { id:'si6', text:'Es liegt eine Kindeswohlgefährdung vor', cat:'bewertung' }
-];
-
-const REFLEXION_QUESTIONS = [
-  { id:'rf1', label:'Was ist mein sozialpädagogischer Auftrag - und was gehört eindeutig nicht dazu?' },
-  { id:'rf2', label:'Welche Informationen darf ich in welcher Situation weitergeben - und welche nicht?' },
-  { id:'rf3', label:'Wann und wie hole ich Beratung ein? Welche Hemmungen habe ich dabei - und was hilft mir dagegen?' },
-  { id:'rf4', label:'Was nehme ich aus Band 1 mit, das mir für den Umgang mit rechtlichen Fragen in Band 2 hilft?' },
-  { id:'rf5', label:'Welche Situation aus meiner bisherigen Praxis (Praktikum, Studium, Beruf) fällt mir ein, bei der die Themen dieses Moduls relevant waren?' }
-];
-
-const KOMPASS_FIELDS = [
-  { id:'ka1', label:'1. Wahrnehmen: Was nehme ich in Mias Fall konkret wahr?', placeholder:'Beobachtetes, Anvertrautes, noch Unklares …' },
-  { id:'ka2', label:'2. Einordnen: Welche fachliche und rechtliche Bedeutung hat das?', placeholder:'Schweigepflicht, Schutzauftrag, Beratungsbedarf …' },
-  { id:'ka3', label:'3. Schützen: Was und wen muss ich schützen?', placeholder:'Mias anvertraute Aussagen, ihre Würde, Vertrauensverhältnis …' },
-  { id:'ka4', label:'4. Beraten: Wen ziehe ich wann hinzu?', placeholder:'Leitung, insoweit erfahrene Fachkraft, anonym oder mit Name …' },
-  { id:'ka5', label:'5. Handeln: Was ist mein nächster Schritt?', placeholder:'Kontakt halten, dokumentieren, Beratung einholen …' }
-];
-
-const KOMPE_ITEMS = [
-  { id:'k1', text:'Ich kann den Unterschied zwischen schulischem und sozialpädagogischem Auftrag erklären.' },
-  { id:'k2', text:'Ich kann Schweigepflicht und Datenschutz grundlegend erläutern.' },
-  { id:'k3', text:'Ich weiß, wann und wie ich Beratung einholen kann und soll.' },
-  { id:'k4', text:'Ich kann beobachtete Fakten von Vermutungen und Bewertungen unterscheiden.' },
-  { id:'k5', text:'Ich weiß, was gewichtige Anhaltspunkte für eine Kindeswohlgefährdung grundsätzlich sind.' },
-  { id:'k6', text:'Ich kann den 5-Schritte-Kompass auf eine konkrete Situation anwenden.' }
-];
-
-const QUIZ_QUESTIONS = [
-  { id:'q01', type:'mc', text:'Schulsozialarbeit hat gemäß SGB VIII primär die Aufgabe, …', options:['… Schulabsentismus zu dokumentieren und ans Jugendamt zu melden.','… Schülerinnen und Schüler mit besonderen sozialen Bedarfen präventiv, beratend und vermittelnd zu unterstützen.','… schwierige Schülerinnen und Schüler zu disziplinieren.','… die Schulleitung in Ordnungsmaßnahmen zu beraten.'], correct:1, fb:'SGB VIII § 13 bzw. § 13a nennen Jugendsozialarbeit und Schulsozialarbeit als Angebot zur sozialpädagogisch fundierten Förderung und Unterstützung.' },
-  { id:'q02', type:'mc', text:'Der besondere Vertrauensschutz in der Schulsozialarbeit ist geregelt in …', options:['… § 8a SGB VIII.','… Art. 5 DSGVO.','… § 65 SGB VIII.','… § 13 SGB VIII.'], correct:2, fb:'§ 65 SGB VIII schützt Informationen, die im Rahmen persönlicher und erzieherischer Hilfe anvertraut wurden.' },
-  { id:'q03', type:'mc', text:'Eine Schülerin bittet Sie: „Bitte sagen Sie es niemandem." Wie antworten Sie fachlich korrekt?', options:['„Ich verspreche Ihnen, es bleibt absolut unter uns."','„Ich halte alles vertraulich - außer wenn ich mir ernsthafte Sorgen um Ihre Sicherheit mache. Das erkläre ich Ihnen."','„Das kann ich leider nicht zusagen - ich muss alles der Schulleitung berichten."','„Wenn Sie mir etwas sagen, bin ich verpflichtet, sofort das Jugendamt zu informieren."'], correct:1, fb:'Vertraulichkeit zusagen, aber die Grenzen transparent und einfühlsam benennen: Das ist fachlich korrekt und fair gegenüber dem Kind.' },
-  { id:'q04', type:'mc', text:'Welche Aussage zur Informationsweitergabe an Lehrkräfte ist fachlich richtig?', options:['Lehrkräfte dürfen grundsätzlich alle Fallinformationen erhalten, die sie benötigen.','Anvertraute Informationen aus der Beratung dürfen ohne Einwilligung nicht an Lehrkräfte weitergegeben werden.','Schulsozialarbeit und Lehrkräfte bilden ein Team ohne Informationsschutz.','Lehrkräfte haben als Aufsichtspersonen ein Auskunftsrecht.'], correct:1, fb:'Schweigepflicht und Vertrauensschutz gelten auch gegenüber Lehrkräften. Datenweitergabe braucht Einwilligung oder eine gesetzliche Grundlage.' },
-  { id:'q05', type:'mc', text:'Gewichtige Anhaltspunkte für eine Kindeswohlgefährdung …', options:['… sind immer eindeutig erkennbar.','… müssen nach § 8a SGB VIII strukturiert eingeschätzt werden - im Zusammenwirken mit anderen Fachkräften.','… führen automatisch zur Meldung ans Jugendamt.','… sind nur bei körperlicher Gewalt relevant.'], correct:1, fb:'§ 8a SGB VIII schreibt vor, dass gewichtige Anhaltspunkte im Mehraugenprinzip geprüft werden - nicht allein und nicht reflexartig.' },
-  { id:'q06', type:'mc', text:'Eine anonymisierte Beratung durch eine insoweit erfahrene Fachkraft ist …', options:['… nur bei gesicherter Kindeswohlgefährdung möglich.','… ein Anspruch der Fachkraft nach § 8b SGB VIII, der auch bei bloßem Verdacht gilt.','… nicht vorgesehen, weil dann keine konkreten Angaben gemacht werden können.','… kostenpflichtig und beim Träger zu beantragen.'], correct:1, fb:'§ 8b SGB VIII gibt Fachkräften einen Anspruch auf Beratung - auch anonymisiert - bei Verdacht auf Kindeswohlgefährdung.' },
-  { id:'q07', type:'mc', text:'Welche der folgenden Handlungen ist datenschutzrechtlich in der Regel unproblematisch?', options:['Fallinformationen im Lehrerzimmer mündlich besprechen.','Fallnotizen per privater WhatsApp an eine Kollegin schicken.','Das Gespräch intern anonymisiert mit der Leitung besprechen.','Den Namen eines Schülers in einer E-Mail an externe Stellen ohne Einwilligung nennen.'], correct:2, fb:'Anonymisierte interne Beratung ist datenschutzkonform und fachlich geboten. Alle anderen Optionen enthalten erhebliche datenschutzrechtliche Risiken.' },
-  { id:'q08', type:'mc', text:'Was ist der Unterschied zwischen dem Auftrag der Schule und dem der Schulsozialarbeit?', options:['Beide Institutionen haben denselben Auftrag: Bildung und Erziehung.','Schule hat Bildungs- und Erziehungsauftrag mit Weisungs- und Sanktionsmöglichkeiten; Schulsozialarbeit arbeitet freiwillig, vertraulich und sozialpädagogisch.','Schulsozialarbeit hat einen Kontrollauftrag gegenüber der Schule.','Schulsozialarbeit ist der Schulleitung vollständig weisungsgebunden.'], correct:1, fb:'Rollenklarheit ist zentral. Schulsozialarbeit hat keine Disziplinierungsfunktion - das ist ihr größtes Kapital für das Vertrauen von Kindern und Jugendlichen.' },
-  { id:'q09', type:'mc', text:'Was gilt, wenn eine Mutter ihren 15-jährigen Sohn anruft und verlangt, den Inhalt eines Beratungsgesprächs mitzuteilen?', options:['Sie müssen als Sorgeberechtigte vollständig informiert werden.','Das Vertrauensverhältnis zum Jugendlichen ist zu schützen. Ohne dessen Einwilligung keine Inhaltsweitergabe.','Bei 15-Jährigen entscheiden die Eltern - der Jugendliche hat kein Mitspracherecht.','Es kommt ausschließlich darauf an, ob der Vater oder die Mutter anruft.'], correct:1, fb:'Der Vertrauensschutz gilt auch gegenüber Eltern. Jugendliche ab einem gewissen Alter haben ein eigenes Recht auf Vertrauensschutz in der Beratung.' },
-  { id:'q10', type:'mc', text:'Welche Reihenfolge ist bei Verdacht auf Kindeswohlgefährdung fachlich richtig?', options:['Direkt das Jugendamt anrufen - Zeit ist entscheidend.','Verdacht intern besprechen → Beratung einholen → dokumentieren → abgestimmt handeln.','Zunächst abwarten - vielleicht löst sich die Situation von selbst.','Alles der Schulleitung übergeben und nichts weiter unternehmen.'], correct:1, fb:'Strukturiertes Vorgehen schützt das Kind, die Fachkraft und die Institution. Voreilige Meldungen können Vertrauensverhältnisse zerstören - fehlende Meldungen können Kindern schaden.' },
-  { id:'q11', type:'mc', text:'Was ist fachlich gemeint, wenn wir sagen: „Nicht jede Sorge ist schon eine Kindeswohlgefährdung"?', options:['Man soll Sorgen ignorieren, bis klare Beweise vorliegen.','Sorgen sind ernst zu nehmen, aber fachlich zu prüfen - keine Dramatisierung, keine Bagatellisierung.','Nur körperliche Verletzungen rechtfertigen fachliche Reaktionen.','Sorgen ohne Beweise dürfen nicht dokumentiert werden.'], correct:1, fb:'Die fachliche Haltung ist: Sorgen wahrnehmen, nicht bagatellisieren - aber auch nicht dramatisieren. Prüfen, beraten, dokumentieren.' },
-  { id:'q12', type:'mc', text:'Wofür steht Schritt 3 des 5-Schritte-Kompasses?', options:['Handeln - den nächsten Schritt umsetzen.','Einordnen - fachliche Bedeutung klären.','Schützen - Vertraulichkeit und Schutzbedarfe prüfen.','Beraten - Fachberatung einholen.'], correct:2, fb:'Schritt 3 „Schützen" fragt: Welche Informationen sind vertraulich? Wer muss geschützt werden? Das kommt vor dem Handeln.' },
-  { id:'q13', type:'mc', text:'§ 8b SGB VIII regelt den Anspruch auf …', options:['… sofortige Meldung beim Jugendamt bei jedem Verdacht.','… fachliche Beratung durch eine insoweit erfahrene Fachkraft, auch anonymisiert.','… Akteneinsicht bei der Schulbehörde.','… Schweigepflichtentbindung durch den Träger.'], correct:1, fb:'§ 8b SGB VIII gibt Fachkräften einen Rechtsanspruch auf Beratung durch eine insoweit erfahrene Fachkraft - auch ohne Namensnennung des Kindes.' },
-  { id:'q14', type:'mc', text:'Welcher DSGVO-Grundsatz gilt für die Dokumentation in der Schulsozialarbeit?', options:['Datenminimierung: Nur notwendige Informationen dokumentieren.','Vollständigkeit: Alles schriftlich festhalten, was im Gespräch gesagt wurde.','Transparenz: Alle Beteiligten erhalten automatisch Einsicht in Notizen.','Speicherung: Daten sind unbegrenzt aufzubewahren.'], correct:0, fb:'Art. 5 DSGVO verlangt Datenminimierung - es dürfen nur die Daten dokumentiert werden, die für den Zweck tatsächlich notwendig sind. Gesprächsprotokolle sind entsprechend zu begrenzen.' },
-  { id:'q15', type:'mc', text:'Eine Schulsozialarbeiterin beobachtet mehrfach blaue Flecken an einem Schüler. Er erklärt sie als Sportunfälle. Was ist der richtige nächste Schritt?', options:['Direkt Anzeige bei der Polizei erstatten.','Den Schüler unter Druck setzen, die Wahrheit zu sagen.','Beobachtungen genau dokumentieren, intern beraten und ggf. insoweit erfahrene Fachkraft einbeziehen.','Abwarten, bis der Schüler selbst um Hilfe bittet.'], correct:2, fb:'Professionelles Vorgehen bedeutet: sorgfältig dokumentieren, nicht allein entscheiden, Beratung einholen - und dabei die Beziehung zum Schüler nicht gefährden. Weder Schweigen noch voreilige Eskalation.' },
-  { id:'q16', type:'mc', text:'Warum ist Rollenklarheit zwischen Schulsozialarbeit und Lehrkräften besonders wichtig?', options:['Weil Schulsozialarbeit weisungsgebunden gegenüber der Lehrkraft ist.','Weil sie verhindert, dass Schulsozialarbeit für schulische Kontroll- und Disziplinierungsaufgaben instrumentalisiert wird.','Weil Lehrkräfte keinen Zugang zu Informationen der Schulsozialarbeit haben dürfen.','Weil nur durch klare Rollen die Schulleitung entlastet wird.'], correct:1, fb:'Klare Rollen schützen das Vertrauensverhältnis zu Schülerinnen und Schülern. Wenn Kinder befürchten, dass Schulsozialarbeit im Auftrag der Schule agiert, nutzen sie das Angebot nicht.' }
-];
-
-const ERROR_ANALYSIS_ITEMS = [
-  { id:'ea1', quote:'„Wenn mir ein Kind etwas erzählt, bleibt ausnahmslos alles geheim - das verspreche ich grundsätzlich jedem."', analysis:'Fachlich problematisch: Absolute Geheimhaltung kann nicht zugesagt werden. Bei gewichtigen Anhaltspunkten für Kindeswohlgefährdung muss Vertraulichkeit zurücktreten. Das transparente Benennen dieser Grenze gehört zur fachlichen Redlichkeit.' },
-  { id:'ea2', quote:'„Die Klassenleitung darf grundsätzlich alles wissen - sie ist für die Klasse verantwortlich."', analysis:'Fachlich problematisch: Verantwortung für eine Klasse ist keine rechtliche Grundlage für den Erhalt von Fallinformationen aus der Beratung. Schweigepflicht gilt auch gegenüber Lehrkräften.' },
-  { id:'ea3', quote:'„Wenn ich ein komisches Gefühl habe, melde ich sofort alles ans Jugendamt - besser zu früh als zu spät."', analysis:'Fachlich problematisch: Voreilige Meldungen können Vertrauen zerstören und dem Kind schaden. Die Pflicht zur strukturierten Einschätzung (§ 8a SGB VIII) geht vor. Erst prüfen, beraten, dokumentieren - dann abgestimmt handeln.' }
-];
-
-/* ══════════════════════════════════════════════════════
-   RENDER-FUNKTIONEN
-   ══════════════════════════════════════════════════════ */
-
-function renderPrecheck() {
-  const wrap = document.getElementById('precheck-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = PRECHECK_ITEMS.map(item => `
-    <div class="pre-item" id="pre-${item.id}">
-      <div class="pre-statement">${item.text}</div>
-      <div class="pre-btns">
-        <button class="pre-btn" data-item="${item.id}" data-val="ja" onclick="selectPrecheck('${item.id}','ja')">Stimmt</button>
-        <button class="pre-btn" data-item="${item.id}" data-val="kommt" onclick="selectPrecheck('${item.id}','kommt')">Kommt darauf an</button>
-        <button class="pre-btn" data-item="${item.id}" data-val="nein" onclick="selectPrecheck('${item.id}','nein')">Stimmt nicht</button>
-      </div>
-      <div class="pre-feedback" id="pfb-${item.id}"></div>
-    </div>`).join('');
-  // Restore
-  Object.entries(preCheckAnswers).forEach(([id,val]) => selectPrecheck(id, val, true));
-}
-
-function selectPrecheck(id, val, restore=false) {
-  preCheckAnswers[id] = val;
-  if (!restore) saveAll();
-  const item = PRECHECK_ITEMS.find(i => i.id === id);
-  if (!item) return;
-  document.querySelectorAll(`[data-item="${id}"]`).forEach(b => {
-    b.classList.toggle('active', b.dataset.val === val);
-  });
-  const fb = document.getElementById(`pfb-${id}`);
-  if (!fb) return;
-  const key = `fb_${val}`;
-  fb.textContent = item[key] || '';
-  fb.className = `pre-feedback show ${val === item.correct ? 'fb-ok' : val === 'kommt' ? 'fb-warn' : 'fb-err'}`;
-}
-
-function renderAmpel(items, containerId, stateObj) {
-  const wrap = document.getElementById(containerId);
-  if (!wrap) return;
-  wrap.innerHTML = items.map(item => `
-    <div class="ampel-item" id="amp-${item.id}">
-      <div class="ampel-text">${item.text}</div>
-      <div class="ampel-btns">
-        <button class="ampel-btn" data-aid="${item.id}" data-val="gruen" onclick="selectAmpel('${item.id}','gruen','${containerId}')">● Fachlich passend</button>
-        <button class="ampel-btn" data-aid="${item.id}" data-val="gelb"  onclick="selectAmpel('${item.id}','gelb','${containerId}')">● Kontextabhängig</button>
-        <button class="ampel-btn" data-aid="${item.id}" data-val="rot"   onclick="selectAmpel('${item.id}','rot','${containerId}')">● Problematisch</button>
-      </div>
-      <div class="ampel-feedback" id="afb-${item.id}"></div>
-    </div>`).join('');
-  Object.entries(stateObj).forEach(([id,val]) => {
-    if (items.find(i => i.id === id)) selectAmpel(id, val, containerId, true);
-  });
-}
-
-function selectAmpel(id, val, containerId, restore=false) {
-  const items = containerId === 'ampel-recht' ? AMPEL_RECHT : AMPEL_SCHNITTSTELLEN;
-  const stateObj = containerId === 'ampel-recht' ? trafficLightAnswers : (trafficLightAnswers['s'] || (trafficLightAnswers['s']={}));
-  if (!restore) { trafficLightAnswers[id] = val; saveAll(); }
-  const item = items.find(i => i.id === id);
-  if (!item) return;
-  document.querySelectorAll(`[data-aid="${id}"]`).forEach(b => b.classList.toggle('active', b.dataset.val === val));
-  const fb = document.getElementById(`afb-${id}`);
-  if (!fb) return;
-  const key = `fb_${val}`;
-  fb.textContent = item[key] || '';
-  fb.className = `ampel-feedback show ${val === item.correct ? 'fb-ok' : val === 'gelb' ? 'fb-warn' : 'fb-err'}`;
-}
-
-function renderPrivacyCases() {
-  const wrap = document.getElementById('privacy-cases-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = PRIVACY_CASES.map(c => `
-    <div class="privacy-case">
-      <div class="privacy-situation">📋 ${c.situation}</div>
-      <div class="privacy-choices" id="pc-choices-${c.id}">
-        ${c.choices.map((ch,i) => `
-          <button class="privacy-choice" onclick="selectPrivacy('${c.id}',${i})">${ch.text}</button>`).join('')}
-      </div>
-      <div class="privacy-fb" id="pv-fb-${c.id}" style="font-size:.83rem;margin-top:.4rem;display:none;"></div>
-    </div>`).join('');
-  Object.entries(privacyCaseAnswers).forEach(([id,i]) => selectPrivacy(id, i, true));
-}
-
-function selectPrivacy(caseId, choiceIdx, restore=false) {
-  if (!restore) { privacyCaseAnswers[caseId] = choiceIdx; saveAll(); }
-  const c = PRIVACY_CASES.find(x => x.id === caseId);
-  if (!c) return;
-  const ch = c.choices[choiceIdx];
-  const wrap = document.getElementById(`pc-choices-${caseId}`);
-  if (wrap) {
-    wrap.querySelectorAll('.privacy-choice').forEach((btn,i) => {
-      btn.classList.remove('correct','wrong');
-      if (i === choiceIdx) btn.classList.add(ch.correct ? 'correct' : 'wrong');
+  </main>
+
+  <script>
+    const MODULE_ID = 'B8M2_V1_NETZWERKARBEIT';
+    const MODULE_KEY = MODULE_ID + '_state';
+    const MODULE_TITLE = 'Band 8 Modul 2: Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune';
+    const APP_PUBLIC_URL = 'https://script.google.com/macros/s/AKfycbz0JdzJ-3LAqHlqrkNlubtNoOBqGtn3EfYLc__aHy92oeza9nUNW1SPbh2DB-1WsfOm/exec';
+    const sections = Array.from(document.querySelectorAll('.section'));
+    const checks = Array.from(document.querySelectorAll('.done'));
+    const navLinks = document.getElementById('navLinks');
+    const progressBar = document.getElementById('progressBar');
+    const progressPct = document.getElementById('progressPct');
+    const certProgress = document.getElementById('certProgress');
+    const certDate = document.getElementById('certDate');
+
+    function loadState(){ try{return JSON.parse(localStorage.getItem(MODULE_KEY)||'{}')}catch(e){return {}} }
+    function saveState(){
+      const state = loadState();
+      checks.forEach(c=>state[c.dataset.id]=c.checked);
+      document.querySelectorAll('[data-save]').forEach(el=>state[el.dataset.save]=el.value);
+      const name = document.getElementById('learnerName')?.value || '';
+      const email = document.getElementById('userEmail')?.value || '';
+      state.learnerName = name;
+      state.userEmail = email;
+      state.privacyConfirm = !!document.getElementById('privacyConfirm')?.checked;
+      state.sendConsent = !!document.getElementById('sendConsent')?.checked;
+      localStorage.setItem(MODULE_KEY, JSON.stringify(state));
+      localStorage.setItem(MODULE_KEY+'_name', name);
+      localStorage.setItem(MODULE_KEY+'_email', email);
+      updateProgress();
+      return state;
+    }
+    function restoreState(){
+      const state = loadState();
+      checks.forEach(c=>c.checked=!!state[c.dataset.id]);
+      document.querySelectorAll('[data-save]').forEach(el=>{ if(state[el.dataset.save]!==undefined) el.value=state[el.dataset.save]; });
+      if(document.getElementById('learnerName')) document.getElementById('learnerName').value = state.learnerName || localStorage.getItem(MODULE_KEY+'_name') || '';
+      if(document.getElementById('userEmail')) document.getElementById('userEmail').value = state.userEmail || localStorage.getItem(MODULE_KEY+'_email') || '';
+      if(document.getElementById('privacyConfirm')) document.getElementById('privacyConfirm').checked = !!state.privacyConfirm;
+      if(document.getElementById('sendConsent')) document.getElementById('sendConsent').checked = !!state.sendConsent;
+      updateCharCount(); updateProgress();
+    }
+    function buildNav(){
+      navLinks.innerHTML = '';
+      sections.forEach((s,idx)=>{
+        const a=document.createElement('a');
+        a.href = '#'+s.id;
+        a.textContent = (idx+1)+'. '+s.dataset.title;
+        navLinks.appendChild(a);
+      });
+    }
+    function updateProgress(){
+      const done = checks.filter(c=>c.checked).length;
+      const pct = checks.length ? Math.round(done/checks.length*100) : 0;
+      if(progressBar) progressBar.style.width = pct+'%';
+      if(progressPct) progressPct.textContent = pct+'%';
+      if(certProgress) certProgress.textContent = pct+'%';
+      if(certDate) certDate.textContent = new Date().toLocaleDateString('de-DE');
+      sections.forEach((s,idx)=>{
+        const unlocked = idx===0 || checks[idx-1]?.checked;
+        s.classList.toggle('locked', !unlocked);
+      });
+      Array.from(navLinks.querySelectorAll('a')).forEach((a,idx)=>{
+        const unlocked = idx===0 || checks[idx-1]?.checked;
+        a.classList.toggle('locked', !unlocked);
+      });
+    }
+    function updateCharCount(){
+      const t=document.getElementById('transfer'); const c=document.getElementById('transferCount');
+      if(t && c) c.textContent = t.value.length;
+    }
+    function setSendStatus(message,type){
+      [document.getElementById('sendStatusTop'), document.getElementById('submitStatus')].filter(Boolean).forEach(el=>{
+        el.textContent = message;
+        el.classList.remove('badmsg','goodmsg');
+        if(type==='error') el.classList.add('badmsg');
+        if(type==='success') el.classList.add('goodmsg');
+      });
+    }
+    function manualSave(){ saveState(); setSendStatus('Zwischenstand lokal gespeichert.','success'); }
+    function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim()); }
+    function collectFields(){
+      const fields = {};
+      document.querySelectorAll('[data-save]').forEach(el=>fields[el.dataset.save]=el.value||'');
+      return fields;
+    }
+    function collectQuizStats(){
+      const quizzes = Array.from(document.querySelectorAll('.quiz'));
+      let solved=0, correct=0;
+      quizzes.forEach(q=>{
+        const buttons = Array.from(q.querySelectorAll('button.option'));
+        if(buttons.some(b=>b.classList.contains('correct')||b.classList.contains('wrong'))) solved++;
+        if(buttons.some((b,idx)=>b.classList.contains('correct') && idx===Number(q.dataset.answer))) correct++;
+      });
+      return {quizScore:correct, quizMaxScore:quizzes.length, quizPercent:quizzes.length?Math.round(correct/quizzes.length*100):0, quizSolved:solved};
+    }
+    function collectOpenTasks(){
+      return sections.filter((s,idx)=>!checks[idx]?.checked).map((s,idx)=>(idx+1)+'. '+(s.dataset.title||s.id));
+    }
+    function collectSubmissionData(){
+      const state = saveState();
+      const fields = collectFields();
+      const done = checks.filter(c=>c.checked).length;
+      const total = checks.length || sections.length;
+      const quiz = collectQuizStats();
+      const name = (document.getElementById('learnerName')?.value||'').trim();
+      const email = (document.getElementById('userEmail')?.value||'').trim();
+      return {
+        Name:name, Email:email, Modul:MODULE_ID, Erledigt:done, Fortschritt:total?Math.round(done/total*100):0, Zeitstempel:new Date().toISOString(),
+        module:MODULE_ID, modul:MODULE_TITLE, moduleTitle:'Netzwerkarbeit mit Jugendhilfe, Vereinen, Beratungsstellen und Kommune',
+        learnerName:name, name:name, email:email, learnerEmail:email,
+        bandNumber:8, moduleNumber:2, progressPercent:total?Math.round(done/total*100):0,
+        completedSections:done, totalSections:total,
+        quizScore:quiz.quizScore, quizMaxScore:quiz.quizMaxScore, quizPercent:quiz.quizPercent, quizPassed:quiz.quizPercent>=80,
+        offeneAufgaben:collectOpenTasks(), fields:fields, checks:state, state:state,
+        transferText:fields.transfer || '', submittedAt:new Date().toISOString(), timestamp:new Date().toISOString(), userAgent:navigator.userAgent,
+        privacyConfirmed:!!document.getElementById('privacyConfirm')?.checked, sendConsent:!!document.getElementById('sendConsent')?.checked
+      };
+    }
+    async function sendData(){
+      const name=(document.getElementById('learnerName')?.value||'').trim();
+      const email=(document.getElementById('userEmail')?.value||'').trim();
+      if(!name){ setSendStatus('Bitte tragen Sie zuerst Ihren Namen ein.','error'); document.getElementById('learnerName')?.focus(); return; }
+      if(!email || !isValidEmail(email)){ setSendStatus('Bitte tragen Sie eine gültige E-Mail-Adresse ein.','error'); document.getElementById('userEmail')?.focus(); return; }
+      if(!document.getElementById('privacyConfirm')?.checked){ setSendStatus('Bitte bestätigen Sie, dass keine identifizierenden Falldaten enthalten sind.','error'); return; }
+      if(!document.getElementById('sendConsent')?.checked){ setSendStatus('Bitte stimmen Sie der Online-Übermittlung zu.','error'); return; }
+      const payload = collectSubmissionData();
+      if(!APP_PUBLIC_URL || APP_PUBLIC_URL.includes('HIER_')){ setSendStatus('Online-Abgabe ist vorbereitet, aber noch nicht aktiviert.','error'); return; }
+      try{
+        setSendStatus('Daten werden gesendet ...');
+        await fetch(APP_PUBLIC_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        const extra = payload.offeneAufgaben.length ? ' Bearbeitung unvollständig möglich; offene Abschnitte wurden mitgesendet.' : '';
+        setSendStatus('Daten wurden übermittelt.'+extra,'success');
+      }catch(err){ setSendStatus('Übermittlung fehlgeschlagen: '+err.message,'error'); }
+    }
+
+    checks.forEach(c=>c.addEventListener('change', saveState));
+    document.querySelectorAll('[data-save]').forEach(el=>el.addEventListener('input', ()=>{updateCharCount(); saveState();}));
+    ['learnerName','userEmail','privacyConfirm','sendConsent'].forEach(id=>document.getElementById(id)?.addEventListener('input', saveState));
+    ['privacyConfirm','sendConsent'].forEach(id=>document.getElementById(id)?.addEventListener('change', saveState));
+    document.getElementById('saveBtn')?.addEventListener('click', manualSave);
+    document.getElementById('resetBtn')?.addEventListener('click', ()=>{ if(confirm('Fortschritt und Eingaben dieses Moduls lokal löschen?')){localStorage.removeItem(MODULE_KEY);localStorage.removeItem(MODULE_KEY+'_name');localStorage.removeItem(MODULE_KEY+'_email'); location.reload();} });
+
+    document.querySelectorAll('.quiz').forEach(q=>{
+      const answer = Number(q.dataset.answer);
+      const buttons = Array.from(q.querySelectorAll('button.option'));
+      const feedback = q.querySelector('.feedback');
+      buttons.forEach((b,idx)=>b.addEventListener('click',()=>{
+        buttons.forEach(x=>x.classList.remove('correct','wrong'));
+        if(idx===answer){b.classList.add('correct'); if(feedback){feedback.textContent='Richtig. Die Entscheidung ist fachlich begründet.'; feedback.style.color='var(--ok)';}}
+        else{b.classList.add('wrong'); if(buttons[answer]) buttons[answer].classList.add('correct'); if(feedback){feedback.textContent='Nicht optimal. Prüfe Auftrag, Rolle, Datenschutz und Zuständigkeit.'; feedback.style.color='var(--bad)';}}
+      }));
     });
-  }
-  const fb = document.getElementById(`pv-fb-${caseId}`);
-  if (fb) {
-    fb.style.display='block';
-    fb.className = `privacy-fb feedback-box show ${ch.correct ? 'fb-ok' : 'fb-err'}`;
-    fb.textContent = ch.fb;
-  }
-}
+    document.getElementById('submitBtn')?.addEventListener('click', sendData);
 
-function renderDecisionTree() {
-  const wrap = document.getElementById('decision-tree-wrap');
-  if (!wrap) return;
-  const dt = DECISION_TREE;
-  wrap.innerHTML = `<div class="tree-node">
-    <div class="tree-question">${dt.question}</div>
-    <div class="tree-options">
-      ${dt.options.map((o,i) => `<div class="tree-opt" onclick="selectTree(${i})">${o.text}</div>`).join('')}
-    </div>
-    <div id="tree-result-wrap"></div>
-  </div>`;
-  if (decisionTreeAnswers['dt1'] !== undefined) selectTree(decisionTreeAnswers['dt1'], true);
-}
-
-function selectTree(idx, restore=false) {
-  if (!restore) { decisionTreeAnswers['dt1'] = idx; saveAll(); }
-  const wrap = document.getElementById('tree-result-wrap');
-  if (!wrap) return;
-  document.querySelectorAll('.tree-opt').forEach((el,i) => {
-    el.style.fontWeight = i===idx ? '700' : '';
-  });
-  wrap.innerHTML = DECISION_TREE.options[idx].result;
-}
-
-function renderRoleMatrix() {
-  const wrap = document.getElementById('role-matrix-wrap');
-  if (!wrap) return;
-  const roles = ['Schulsozialarbeit','Lehrkraft','Schulleitung','Eltern / Sorgeberechtigte','Jugendamt','Externe Beratungsstelle'];
-  const chipClass = {'Schulsozialarbeit':'chip-ssa','Lehrkraft':'chip-lk','Schulleitung':'chip-sl','Eltern / Sorgeberechtigte':'chip-eltern','Jugendamt':'chip-ja','Externe Beratungsstelle':'chip-extern'};
-  wrap.innerHTML = ROLE_MATRIX_ITEMS.map(item => `
-    <div style="margin:.6rem 0;padding:.7rem 1rem;background:#f7f9fc;border-radius:8px;border:1.5px solid var(--c-border);">
-      <div style="font-size:.9rem;font-weight:600;margin-bottom:.5rem;">${item.text}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:.4rem;">${roles.map(r => `
-        <span class="role-chip ${chipClass[r]||''}" style="${roleMatrixAnswers[item.id]===r?'opacity:1;box-shadow:0 0 0 2px #333;':'opacity:.6;'}"
-          onclick="selectRole('${item.id}','${r}')">${r}</span>`).join('')}
-      </div>
-      <div id="rm-fb-${item.id}" style="font-size:.8rem;margin-top:.4rem;"></div>
-    </div>`).join('');
-}
-
-function selectRole(itemId, role, restore=false) {
-  if (!restore) { roleMatrixAnswers[itemId] = role; saveAll(); }
-  const item = ROLE_MATRIX_ITEMS.find(i => i.id === itemId);
-  if (!item) return;
-  // Update chips
-  renderRoleMatrix();
-  // Re-apply all saved
-  Object.entries(roleMatrixAnswers).forEach(([id,r]) => {
-    const fb = document.getElementById(`rm-fb-${id}`);
-    const it = ROLE_MATRIX_ITEMS.find(i => i.id === id);
-    if (fb && it) {
-      const ok = r === it.answer || (it.answer.includes(r));
-      fb.className = ok ? 'feedback-box fb-ok show' : 'feedback-box fb-warn show';
-      fb.textContent = ok ? `✅ Richtig: ${it.answer}` : `🟡 Fachlich passt eher: ${it.answer}`;
-    }
-  });
-}
-
-function renderSortingTask() {
-  const wrap = document.getElementById('sorting-task');
-  if (!wrap) return;
-  const cats = [{id:'beobachtet',label:'Beobachtbar'},{id:'anvertraut',label:'Anvertraut'},{id:'unklar',label:'Noch unklar'},{id:'bewertung',label:'Bewertung'}];
-  wrap.innerHTML = `
-    <div style="margin:.7rem 0;">
-      <p style="font-size:.85rem;margin-bottom:.6rem;">Klicken Sie eine Aussage an, dann die passende Kategorie.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem;" id="sort-items">
-        ${SORTING_ITEMS.map(i => `<span class="role-chip chip-ssa" id="sitem-${i.id}" onclick="selectSortItem('${i.id}')" style="cursor:pointer;font-size:.82rem;">${i.text}</span>`).join('')}
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;" id="sort-cats">
-        ${cats.map(c => `<div onclick="assignSort('${c.id}')" style="min-height:64px;border:2px dashed var(--c-border);border-radius:8px;padding:.5rem .7rem;font-size:.8rem;cursor:pointer;" id="scat-${c.id}">
-          <strong>${c.label}</strong>
-          <div id="scat-items-${c.id}" style="margin-top:.3rem;display:flex;flex-wrap:wrap;gap:.3rem;"></div>
-        </div>`).join('')}
-      </div>
-    </div>`;
-}
-
-let selectedSortItem = null;
-function selectSortItem(id) {
-  selectedSortItem = id;
-  document.querySelectorAll('#sort-items .role-chip').forEach(el => el.style.outline = '');
-  const el = document.getElementById(`sitem-${id}`);
-  if (el) el.style.outline = '3px solid var(--c-primary)';
-}
-function assignSort(catId) {
-  if (!selectedSortItem) return;
-  const item = SORTING_ITEMS.find(i => i.id === selectedSortItem);
-  const orig = document.getElementById(`sitem-${selectedSortItem}`);
-  if (orig) orig.style.display = 'none';
-  const cat = document.getElementById(`scat-items-${catId}`);
-  if (cat) {
-    const span = document.createElement('span');
-    span.className = 'role-chip chip-ssa';
-    span.style.fontSize = '.78rem';
-    span.textContent = item.text;
-    cat.appendChild(span);
-  }
-  selectedSortItem = null;
-}
-function checkSorting() { /* visual only - Musterlösung button handles this */ }
-
-function renderReflexion() {
-  const wrap = document.getElementById('reflexion-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = REFLEXION_QUESTIONS.map(q => `
-    <div class="reflex-q">
-      <div class="reflex-q-label">${q.label}</div>
-      <textarea id="rf-${q.id}" rows="3" placeholder="Ihre Notizen …" oninput="saveReflexion('${q.id}',this.value)">${reflectionAnswers[q.id]||''}</textarea>
-    </div>`).join('');
-}
-
-function saveReflexion(id, val) {
-  reflectionAnswers[id] = val;
-  saveAll();
-}
-
-function renderKompassApp() {
-  const wrap = document.getElementById('kompass-application');
-  if (!wrap) return;
-  wrap.innerHTML = KOMPASS_FIELDS.map(f => `
-    <div class="reflex-q">
-      <div class="reflex-q-label">${f.label}</div>
-      <textarea id="ka-${f.id}" rows="3" placeholder="${f.placeholder}" oninput="saveKompass('${f.id}',this.value)">${reflectionAnswers['kompass_'+f.id]||''}</textarea>
-    </div>`).join('');
-}
-
-function saveKompass(id, val) {
-  reflectionAnswers['kompass_'+id] = val;
-  saveAll();
-}
-
-function renderErrorAnalysis() {
-  const wrap = document.getElementById('error-analysis-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = ERROR_ANALYSIS_ITEMS.map(e => `
-    <div style="margin:.7rem 0;">
-      <div class="error-quote">${e.quote}</div>
-      <div class="btn-row"><button class="btn btn-outline btn-sm" onclick="showSol('sol-ea-${e.id}')">Analyse anzeigen</button></div>
-      <div class="block-solution" id="sol-ea-${e.id}">
-        <div class="block-label">✅ Fachliche Einordnung</div>
-        <p>${e.analysis}</p>
-      </div>
-    </div>`).join('');
-}
-
-function renderKompe() {
-  const wrap = document.getElementById('kompe-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = KOMPE_ITEMS.map(item => `
-    <div class="kompe-item">
-      <div class="kompe-text">${item.text}</div>
-      <div class="kompe-rating">
-        ${[1,2,3,4,5].map(n => `<span class="kompe-star ${(kompetenzAnswers[item.id]||0)>=n?'active':''}" onclick="rateKompe('${item.id}',${n})">★</span>`).join('')}
-      </div>
-    </div>`).join('');
-}
-
-function rateKompe(id, val) {
-  kompetenzAnswers[id] = val;
-  saveAll();
-  renderKompe();
-}
-
-function renderQuiz() {
-  const wrap = document.getElementById('quiz-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = `<div class="quiz-counter">Fragen 1-${QUIZ_QUESTIONS.length}</div>` +
-    QUIZ_QUESTIONS.map((q,qi) => `
-    <div class="quiz-question" id="qq-${q.id}">
-      <div class="quiz-q-text">${qi+1}. ${q.text}</div>
-      <ul class="option-list">
-        ${q.options.map((opt,oi) => `
-          <li class="option-item" id="opt-${q.id}-${oi}" onclick="selectQuiz('${q.id}',${oi})">
-            <input type="radio" name="${q.id}" value="${oi}" ${quizAnswers[q.id]===oi?'checked':''}> ${opt}
-          </li>`).join('')}
-      </ul>
-      <div class="feedback-box" id="qfb-${q.id}" style="display:none;"></div>
-    </div>`).join('');
-  if (quizSubmitted) showQuizResults();
-}
-
-function selectQuiz(qid, oi) {
-  if (quizSubmitted) return;
-  quizAnswers[qid] = oi;
-  document.querySelectorAll(`[id^="opt-${qid}-"]`).forEach(el => el.classList.remove('selected'));
-  document.getElementById(`opt-${qid}-${oi}`).classList.add('selected');
-  saveAll();
-}
-
-function submitQuiz() {
-  const unanswered = QUIZ_QUESTIONS.filter(q => quizAnswers[q.id] === undefined);
-  if (unanswered.length > 0) { alert(`Bitte beantworten Sie noch ${unanswered.length} Frage(n).`); return; }
-  quizSubmitted = true;
-  showQuizResults();
-  saveAll();
-}
-
-function showQuizResults() {
-  quizScore = 0;
-  QUIZ_QUESTIONS.forEach(q => {
-    const chosen = quizAnswers[q.id];
-    const correct = chosen === q.correct;
-    if (correct) quizScore++;
-    document.querySelectorAll(`[id^="opt-${q.id}-"]`).forEach(el => {
-      const idx = parseInt(el.id.split('-').pop());
-      el.classList.remove('selected','correct','wrong');
-      if (idx === q.correct) el.classList.add('correct');
-      else if (idx === chosen) el.classList.add('wrong');
-      el.style.pointerEvents = 'none';
-    });
-    const fb = document.getElementById(`qfb-${q.id}`);
-    if (fb) { fb.style.display='block'; fb.className=`feedback-box ${correct?'fb-ok':'fb-err'}`; fb.textContent = (correct?'✅ ':'❌ ') + q.fb; }
-  });
-  const pct = Math.round(quizScore/QUIZ_QUESTIONS.length*100);
-  const passed = pct >= 70;
-  const res = document.getElementById('quiz-result');
-  if (res) {
-    res.className = 'result-box show';
-    res.innerHTML = `<div class="result-score">${quizScore} / ${QUIZ_QUESTIONS.length}</div>
-      <div class="result-label">${passed?'✅ Bestanden':'❌ Noch nicht bestanden'} - ${pct} %</div>
-      <div class="result-detail">${passed?'Sehr gut. Sie haben die wesentlichen Inhalte von Modul 1 erfasst.':'Wiederholen Sie die Abschnitte, in denen Sie unsicher waren, und versuchen Sie es erneut.'}</div>`;
-  }
-  document.getElementById('quizSubmitBtn').disabled = true;
-  if (passed) { const nb = document.getElementById('quizNextBtnWrap'); if(nb) nb.style.display='flex'; }
-}
-
-/* ══════════════════════════════════════════════════════
-   ABSCHNITTE & FORTSCHRITT
-   ══════════════════════════════════════════════════════ */
-function toggleCard(id) {
-  const card = document.getElementById(id);
-  if (!card || card.classList.contains('card-locked')) return;
-  card.classList.toggle('open');
-}
-
-function completeSection(n) {
-  if (!completedSections.includes(n)) completedSections.push(n);
-  completedSections.sort((a,b) => a-b);
-  const statusEl = document.getElementById(`status-${n}`);
-  if (statusEl) { statusEl.textContent='erledigt'; statusEl.className='card-status status-done'; }
-  const card = document.getElementById(`sec-${n}`);
-  if (card) card.classList.remove('open');
-  updateProgress();
-  saveAll();
-  if (n < TOTAL_SECTIONS) unlockSection(n + 1);
-}
-
-function unlockSection(n) {
-  const card = document.getElementById(`sec-${n}`);
-  if (!card) return;
-  card.classList.remove('card-locked');
-  card.classList.add('open');
-  const statusEl = document.getElementById(`status-${n}`);
-  if (statusEl && statusEl.textContent === 'gesperrt') { statusEl.textContent='offen'; statusEl.className='card-status status-active'; }
-  card.scrollIntoView({ behavior:'smooth', block:'start' });
-}
-
-function applySequentialLocking() {
-  for (let n = 1; n <= TOTAL_SECTIONS; n++) {
-    const card = document.getElementById(`sec-${n}`);
-    const statusEl = document.getElementById(`status-${n}`);
-    if (!card) continue;
-    const isDone = completedSections.includes(n);
-    const isUnlocked = n === 1 || completedSections.includes(n - 1) || isDone;
-    if (!isUnlocked) {
-      card.classList.add('card-locked');
-      card.classList.remove('open');
-      if (statusEl) { statusEl.textContent = 'gesperrt'; statusEl.className = 'card-status status-open'; }
-    } else {
-      card.classList.remove('card-locked');
-      if (statusEl && !isDone) { statusEl.textContent = n === 1 ? 'offen' : 'freigeschaltet'; statusEl.className = 'card-status status-active'; }
-    }
-    if (isDone && statusEl) { statusEl.textContent = 'erledigt'; statusEl.className = 'card-status status-done'; }
-  }
-}
-
-function updateStickyOffsets() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-  document.documentElement.style.setProperty('--sticky-header-height', Math.ceil(header.getBoundingClientRect().height) + 'px');
-}
-
-function updateProgress() {
-  const pct = Math.round(completedSections.length / TOTAL_SECTIONS * 100);
-  document.getElementById('progressFill').style.width = pct + '%';
-  const progressTrack = document.querySelector('.progress-track');
-  if (progressTrack) progressTrack.setAttribute('aria-valuenow', String(pct));
-  document.getElementById('progressText').textContent = `Fortschritt: ${pct} %`;
-  document.getElementById('progressSections').textContent = `${completedSections.length} von ${TOTAL_SECTIONS} Abschnitten`;
-}
-
-function resetProgress() {
-  if (!confirm('Möchten Sie wirklich Ihren gesamten Fortschritt zurücksetzen?')) return;
-  localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem(PENDING_SENDS_KEY);
-  location.reload();
-}
-
-/* ══════════════════════════════════════════════════════
-   PERSISTENZ
-   ══════════════════════════════════════════════════════ */
-const STORAGE_KEY = 'sol_band2_m1';
-const PENDING_SENDS_KEY = 'sol_band2_m1_pending_sends';
-
-function getLearnerMeta() {
-  const nameEl = document.getElementById('learnerName');
-  const emailEl = document.getElementById('learnerEmail');
-  const idEl = document.getElementById('learnerId');
-  return {
-    learnerName: nameEl ? nameEl.value.trim() : '',
-    learnerEmail: emailEl ? emailEl.value.trim() : '',
-    learnerId: idEl ? idEl.value.trim() : ''
-  };
-}
-
-function saveAll() {
-  const learner = getLearnerMeta();
-  const data = {
-    schemaVersion: 2,
-    savedAt: new Date().toISOString(),
-    completedSections,
-    preCheckAnswers,
-    trafficLightAnswers,
-    roleMatrixAnswers,
-    decisionTreeAnswers,
-    privacyCaseAnswers,
-    reflectionAnswers,
-    kompetenzAnswers,
-    quizAnswers,
-    quizSubmitted,
-    quizScore,
-    learnerName: learner.learnerName,
-    learnerEmail: learner.learnerEmail,
-    learnerId: learner.learnerId
-  };
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    return true;
-  } catch(e) {
-    console.warn('Lokales Speichern fehlgeschlagen:', e);
-    return false;
-  }
-}
-
-function loadAll() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const data = JSON.parse(raw);
-    completedSections = Array.isArray(data.completedSections) ? data.completedSections.filter(n => Number.isInteger(n) && n >= 1 && n <= TOTAL_SECTIONS) : [];
-    preCheckAnswers = data.preCheckAnswers || {};
-    trafficLightAnswers = data.trafficLightAnswers || {};
-    roleMatrixAnswers = data.roleMatrixAnswers || {};
-    decisionTreeAnswers = data.decisionTreeAnswers || {};
-    privacyCaseAnswers = data.privacyCaseAnswers || {};
-    reflectionAnswers = data.reflectionAnswers || {};
-    kompetenzAnswers = data.kompetenzAnswers || {};
-    quizAnswers = data.quizAnswers || {};
-    quizSubmitted = !!data.quizSubmitted;
-    quizScore = Number.isFinite(data.quizScore) ? data.quizScore : 0;
-    window.__savedLearnerName = data.learnerName || '';
-    window.__savedLearnerEmail = data.learnerEmail || '';
-    window.__savedLearnerId = data.learnerId || '';
-  } catch(e) {
-    console.warn('Lokales Laden fehlgeschlagen:', e);
-  }
-}
-
-function setupLearnerSync() {
-  ['learnerName', 'learnerEmail', 'learnerId'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el || el.dataset.syncAttached === '1') return;
-    el.dataset.syncAttached = '1';
-    el.addEventListener('input', () => saveAll());
-    el.addEventListener('change', () => saveAll());
-  });
-}
-
-function syncLearnerFields() {
-  const nameEl = document.getElementById('learnerName');
-  const emailEl = document.getElementById('learnerEmail');
-  const idEl = document.getElementById('learnerId');
-  if (nameEl && !nameEl.value && window.__savedLearnerName) nameEl.value = window.__savedLearnerName;
-  if (emailEl && !emailEl.value && window.__savedLearnerEmail) emailEl.value = window.__savedLearnerEmail;
-  if (idEl && !idEl.value && window.__savedLearnerId) idEl.value = window.__savedLearnerId;
-}
-
-function readPendingSends() {
-  try { return JSON.parse(localStorage.getItem(PENDING_SENDS_KEY) || '[]'); } catch(e) { return []; }
-}
-
-function writePendingSends(items) {
-  try { localStorage.setItem(PENDING_SENDS_KEY, JSON.stringify(items)); } catch(e) {}
-}
-
-function queuePendingSend(payload) {
-  const items = readPendingSends();
-  items.push(payload);
-  writePendingSends(items.slice(-20));
-}
-
-async function flushPendingSends() {
-  if (!GOOGLE_SCRIPT_URL) return 0;
-  const items = readPendingSends();
-  if (!items.length) return 0;
-  const remaining = [];
-  let sent = 0;
-  for (const item of items) {
-    try {
-      const res = await fetch(GOOGLE_SCRIPT_URL, { method:'POST', body: JSON.stringify(item), headers:{'Content-Type':'text/plain;charset=utf-8'} });
-      if (res.ok) sent++; else remaining.push(item);
-    } catch(e) {
-      remaining.push(item);
-    }
-  }
-  writePendingSends(remaining);
-  return sent;
-}
-
-/* ══════════════════════════════════════════════════════
-   MUSTERLÖSUNGEN
-   ══════════════════════════════════════════════════════ */
-function showSol(id) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle('visible');
-}
-
-/* ══════════════════════════════════════════════════════
-   GOOGLE SHEETS ÜBERMITTLUNG
-   ══════════════════════════════════════════════════════ */
-function zwischenspeichern() {
-  const ok = saveAll();
-  const statusEl = document.getElementById('sendStatus');
-  if (!statusEl) return;
-  if (ok) {
-    statusEl.textContent = '💾 Zwischenstand lokal gespeichert – ' + new Date().toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'});
-    statusEl.className = 'header-status show sf-ok';
-  } else {
-    statusEl.textContent = '⚠️ Lokales Speichern nicht möglich (Browser-Speicher voll?).';
-    statusEl.className = 'header-status show sf-err';
-  }
-  setTimeout(() => { statusEl.classList.remove('show'); }, 4000);
-}
-
-  async function sendResultsToGoogleSheets() {
-  saveAll();
-  const btn = document.getElementById('sendBtn');
-  const statusEl = document.getElementById('sendStatus');
-  const learner = getLearnerMeta();
-  const learnerName = learner.learnerName;
-  const learnerEmail = learner.learnerEmail;
-  const learnerId = learner.learnerId;
-  const pct = Math.round(completedSections.length / TOTAL_SECTIONS * 100);
-
-  if (!statusEl) {
-    alert('Das Statusfeld für die Übermittlung wurde nicht gefunden. Bitte laden Sie die Seite neu.');
-    return;
-  }
-
-  if (!learnerName) {
-    statusEl.textContent = 'Bitte geben Sie Ihren Namen oder ein Kürzel ein, bevor Sie das Ergebnis absenden.';
-    statusEl.className = 'status-field show sf-warn';
-    document.getElementById('learnerName')?.focus();
-    return;
-  }
-
-  if (!learnerEmail) {
-    statusEl.textContent = 'Bitte geben Sie Ihre E-Mail-Adresse ein, bevor Sie das Ergebnis absenden.';
-    statusEl.className = 'status-field show sf-warn';
-    document.getElementById('learnerEmail')?.focus();
-    return;
-  }
-
-  const emailEl = document.getElementById('learnerEmail');
-  if (emailEl && !emailEl.checkValidity()) {
-    statusEl.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
-    statusEl.className = 'header-status show sf-warn';
-    emailEl.focus();
-    return;
-  }
-
-  const privacyConfirmEl = document.getElementById('privacyConfirm');
-  const sendConsentEl = document.getElementById('sendConsent');
-  if (!privacyConfirmEl?.checked) {
-    statusEl.textContent = '⚠️ Bitte bestätigen Sie, dass keine identifizierenden Falldaten enthalten sind.';
-    statusEl.className = 'header-status show sf-warn';
-    privacyConfirmEl?.focus();
-    return;
-  }
-  if (!sendConsentEl?.checked) {
-    statusEl.textContent = '⚠️ Bitte stimmen Sie der Online-Übermittlung zu.';
-    statusEl.className = 'header-status show sf-warn';
-    sendConsentEl?.focus();
-    return;
-  }
-
-  const payload = {
-    timestamp: new Date().toISOString(),
-    attemptId: 'b2m1-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10),
-    courseTitle: 'SOL-Schulsozialarbeit Niedersachsen',
-    bandNumber: 2,
-    bandTitle: 'Recht, Schutzauftrag, Datenschutz und schulische Schnittstellen',
-    moduleNumber: 1,
-    moduleTitle: 'Rechtliche Grundorientierung',
-    participantName: learnerName,
-    participantEmail: learnerEmail,
-    learnerName,
-    learnerEmail,
-    email: learnerEmail,
-    learnerId,
-    progressPercent: pct,
-    completedSections: completedSections.join(','),
-    quizScore,
-    quizMaxScore: QUIZ_QUESTIONS.length,
-    quizPercent: Math.round(quizScore/QUIZ_QUESTIONS.length*100),
-    quizPassed: quizScore/QUIZ_QUESTIONS.length >= 0.7,
-    preCheckAnswers: JSON.stringify(preCheckAnswers),
-    trafficLightAnswers: JSON.stringify(trafficLightAnswers),
-    roleMatrixAnswers: JSON.stringify(roleMatrixAnswers),
-    decisionTreeAnswers: JSON.stringify(decisionTreeAnswers),
-    privacyCaseAnswers: JSON.stringify(privacyCaseAnswers),
-    reflectionAnswers: JSON.stringify(reflectionAnswers),
-    finalCompetenceSelfAssessment: JSON.stringify(kompetenzAnswers),
-    privacyConfirmed: !!document.getElementById('privacyConfirm')?.checked,
-    sendConsent: !!document.getElementById('sendConsent')?.checked,
-    localSavedAt: new Date().toISOString(),
-    userAgent: navigator.userAgent
-  };
-
-  if (!GOOGLE_SCRIPT_URL) {
-    queuePendingSend(payload);
-    statusEl.textContent = 'Keine Google-Sheets-Anbindung hinterlegt. Die Übermittlung wurde lokal vorgemerkt.';
-    statusEl.className = 'status-field show sf-warn';
-    return;
-  }
-
-  if (btn) btn.disabled = true;
-  statusEl.textContent = 'Ergebnis wird übermittelt …';
-  statusEl.className = 'status-field show sf-warn';
-
-  try {
-    await flushPendingSends();
-    const res = await fetch(GOOGLE_SCRIPT_URL, { method:'POST', body: JSON.stringify(payload), headers:{'Content-Type':'text/plain;charset=utf-8'} });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    statusEl.textContent = 'Ergebnis wurde erfolgreich übermittelt. Sie können nach Änderungen erneut absenden.';
-    statusEl.className = 'status-field show sf-ok';
-  } catch(e) {
-    queuePendingSend(payload);
-    statusEl.textContent = 'Übermittlung fehlgeschlagen. Die Eingaben bleiben lokal gespeichert und werden beim nächsten Absenden erneut versucht.';
-    statusEl.className = 'status-field show sf-err';
-  } finally {
-    if (btn) btn.disabled = false;
-  }
-}
-
-
-/* ══════════════════════════════════════════════════════
-   INITIALISIERUNG
-   ══════════════════════════════════════════════════════ */
-function init() {
-  loadAll();
-  renderPrecheck();
-  renderSortingTask();
-  renderAmpel(AMPEL_RECHT, 'ampel-recht', trafficLightAnswers);
-  renderAmpel(AMPEL_SCHNITTSTELLEN, 'ampel-schnittstellen', trafficLightAnswers);
-  renderPrivacyCases();
-  renderDecisionTree();
-  renderRoleMatrix();
-  renderErrorAnalysis();
-  renderKompassApp();
-  renderReflexion();
-  renderKompe();
-  renderQuiz();
-
-  // Restore completed section badges and apply sequential unlocking
-  applySequentialLocking();
-
-  setupLearnerSync();
-  syncLearnerFields();
-  updateProgress();
-
-  const bar = document.getElementById('float-send-bar');
-  if (bar && completedSections.length > 0) bar.style.display = 'block';
-  flushPendingSends();
-}
-
-init();
-</script>
+    buildNav(); restoreState();
+  </script>
 </body>
 </html>
