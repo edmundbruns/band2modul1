@@ -81,6 +81,9 @@ p:last-child { margin-bottom: 0; }
 }
 .header-status.show { display: block; }
 .header-status.sf-ok { background: var(--c-ok-light); color: #155724; border: 1px solid var(--c-ok); }
+.header-consent { display: flex; flex-wrap: wrap; gap: .35rem 1.2rem; padding: .25rem 0 .1rem; }
+.header-consent label { color: #fff; font-size: .74rem; font-weight: 600; display: flex; align-items: center; gap: .4rem; cursor: pointer; opacity: .93; }
+.header-consent input[type=checkbox] { accent-color: #fff; width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; }
 .header-status.sf-warn { background: var(--c-warn-light); color: #7d5a00; border: 1px solid var(--c-warn); }
 .header-status.sf-err { background: var(--c-danger-light); color: #721c24; border: 1px solid var(--c-danger); }
 .header-badge {
@@ -486,6 +489,10 @@ kbd{background:#eef2f7;border:1px solid var(--c-border);border-radius:5px;paddin
       <button class="header-save-btn" id="saveBtn" onclick="zwischenspeichern()">💾 Zwischenspeichern</button>
       <button class="header-send-btn" id="sendBtn" onclick="sendResultsToGoogleSheets()">📤 Absenden</button>
     </div>
+    <div class="header-consent">
+      <label><input type="checkbox" id="privacyConfirm"> Keine identifizierenden Falldaten enthalten</label>
+      <label><input type="checkbox" id="sendConsent"> Online-Übermittlung zustimmen</label>
+    </div>
   </div>
   <div class="header-status" id="sendStatus" aria-live="polite"></div>
 </header>
@@ -611,9 +618,7 @@ kbd{background:#eef2f7;border:1px solid var(--c-border);border-radius:5px;paddin
     <div class="block-task">
       <div class="block-label">✏ Aufgabe: Erstes Sortieren</div>
       <p>Ordnen Sie die folgenden Informationen aus der Situation einer Kategorie zu. Klicken Sie auf die passende Kategorie.</p>
-      <div id="sorting-task"><div class="form-group"><label><input type="checkbox" id="privacyConfirm"> Keine identifizierenden Falldaten</label></div>
-<div class="form-group"><label><input type="checkbox" id="sendConsent"> Online-Übermittlung zustimmen</label></div>
-</div>
+      <div id="sorting-task"></div>
       <div class="btn-row">
         <button class="btn btn-outline btn-sm" onclick="checkSorting()">Auswahl prüfen</button>
         <button class="btn btn-outline btn-sm" onclick="showSol('sol-sorting')">Musterlösung</button>
@@ -976,13 +981,13 @@ kbd{background:#eef2f7;border:1px solid var(--c-border);border-radius:5px;paddin
     <span class="card-icon">🏆</span>
     <div style="flex:1">
       <div class="card-title">Gelingensnachweis: Modul 1</div>
-      <div class="text-muted text-small">12 Fragen · Multiple Choice · Fallentscheidung · Zuordnung</div>
+      <div class="text-muted text-small">16 Fragen · Multiple Choice · Fallentscheidung · Zuordnung</div>
     </div>
     <span class="card-status status-open" id="status-9">offen</span>
     <span class="card-toggle">▾</span>
   </div>
   <div class="card-body">
-    <p>Beantworten Sie alle 12 Fragen. Klicken Sie danach auf „Auswertung anzeigen". Ihre Ergebnisse werden lokal gespeichert.</p>
+    <p>Beantworten Sie alle 16 Fragen. Klicken Sie danach auf „Auswertung anzeigen". Ihre Ergebnisse werden lokal gespeichert.</p>
     <div id="quiz-wrap"></div>
     <div class="btn-row">
       <button class="btn btn-primary" id="quizSubmitBtn" onclick="submitQuiz()">Auswertung anzeigen</button>
@@ -1235,7 +1240,11 @@ const QUIZ_QUESTIONS = [
   { id:'q09', type:'mc', text:'Was gilt, wenn eine Mutter ihren 15-jährigen Sohn anruft und verlangt, den Inhalt eines Beratungsgesprächs mitzuteilen?', options:['Sie müssen als Sorgeberechtigte vollständig informiert werden.','Das Vertrauensverhältnis zum Jugendlichen ist zu schützen. Ohne dessen Einwilligung keine Inhaltsweitergabe.','Bei 15-Jährigen entscheiden die Eltern - der Jugendliche hat kein Mitspracherecht.','Es kommt ausschließlich darauf an, ob der Vater oder die Mutter anruft.'], correct:1, fb:'Der Vertrauensschutz gilt auch gegenüber Eltern. Jugendliche ab einem gewissen Alter haben ein eigenes Recht auf Vertrauensschutz in der Beratung.' },
   { id:'q10', type:'mc', text:'Welche Reihenfolge ist bei Verdacht auf Kindeswohlgefährdung fachlich richtig?', options:['Direkt das Jugendamt anrufen - Zeit ist entscheidend.','Verdacht intern besprechen → Beratung einholen → dokumentieren → abgestimmt handeln.','Zunächst abwarten - vielleicht löst sich die Situation von selbst.','Alles der Schulleitung übergeben und nichts weiter unternehmen.'], correct:1, fb:'Strukturiertes Vorgehen schützt das Kind, die Fachkraft und die Institution. Voreilige Meldungen können Vertrauensverhältnisse zerstören - fehlende Meldungen können Kindern schaden.' },
   { id:'q11', type:'mc', text:'Was ist fachlich gemeint, wenn wir sagen: „Nicht jede Sorge ist schon eine Kindeswohlgefährdung"?', options:['Man soll Sorgen ignorieren, bis klare Beweise vorliegen.','Sorgen sind ernst zu nehmen, aber fachlich zu prüfen - keine Dramatisierung, keine Bagatellisierung.','Nur körperliche Verletzungen rechtfertigen fachliche Reaktionen.','Sorgen ohne Beweise dürfen nicht dokumentiert werden.'], correct:1, fb:'Die fachliche Haltung ist: Sorgen wahrnehmen, nicht bagatellisieren - aber auch nicht dramatisieren. Prüfen, beraten, dokumentieren.' },
-  { id:'q12', type:'mc', text:'Wofür steht Schritt 3 des 5-Schritte-Kompasses?', options:['Handeln - den nächsten Schritt umsetzen.','Einordnen - fachliche Bedeutung klären.','Schützen - Vertraulichkeit und Schutzbedarfe prüfen.','Beraten - Fachberatung einholen.'], correct:2, fb:'Schritt 3 „Schützen" fragt: Welche Informationen sind vertraulich? Wer muss geschützt werden? Das kommt vor dem Handeln.' }
+  { id:'q12', type:'mc', text:'Wofür steht Schritt 3 des 5-Schritte-Kompasses?', options:['Handeln - den nächsten Schritt umsetzen.','Einordnen - fachliche Bedeutung klären.','Schützen - Vertraulichkeit und Schutzbedarfe prüfen.','Beraten - Fachberatung einholen.'], correct:2, fb:'Schritt 3 „Schützen" fragt: Welche Informationen sind vertraulich? Wer muss geschützt werden? Das kommt vor dem Handeln.' },
+  { id:'q13', type:'mc', text:'§ 8b SGB VIII regelt den Anspruch auf …', options:['… sofortige Meldung beim Jugendamt bei jedem Verdacht.','… fachliche Beratung durch eine insoweit erfahrene Fachkraft, auch anonymisiert.','… Akteneinsicht bei der Schulbehörde.','… Schweigepflichtentbindung durch den Träger.'], correct:1, fb:'§ 8b SGB VIII gibt Fachkräften einen Rechtsanspruch auf Beratung durch eine insoweit erfahrene Fachkraft - auch ohne Namensnennung des Kindes.' },
+  { id:'q14', type:'mc', text:'Welcher DSGVO-Grundsatz gilt für die Dokumentation in der Schulsozialarbeit?', options:['Datenminimierung: Nur notwendige Informationen dokumentieren.','Vollständigkeit: Alles schriftlich festhalten, was im Gespräch gesagt wurde.','Transparenz: Alle Beteiligten erhalten automatisch Einsicht in Notizen.','Speicherung: Daten sind unbegrenzt aufzubewahren.'], correct:0, fb:'Art. 5 DSGVO verlangt Datenminimierung - es dürfen nur die Daten dokumentiert werden, die für den Zweck tatsächlich notwendig sind. Gesprächsprotokolle sind entsprechend zu begrenzen.' },
+  { id:'q15', type:'mc', text:'Eine Schulsozialarbeiterin beobachtet mehrfach blaue Flecken an einem Schüler. Er erklärt sie als Sportunfälle. Was ist der richtige nächste Schritt?', options:['Direkt Anzeige bei der Polizei erstatten.','Den Schüler unter Druck setzen, die Wahrheit zu sagen.','Beobachtungen genau dokumentieren, intern beraten und ggf. insoweit erfahrene Fachkraft einbeziehen.','Abwarten, bis der Schüler selbst um Hilfe bittet.'], correct:2, fb:'Professionelles Vorgehen bedeutet: sorgfältig dokumentieren, nicht allein entscheiden, Beratung einholen - und dabei die Beziehung zum Schüler nicht gefährden. Weder Schweigen noch voreilige Eskalation.' },
+  { id:'q16', type:'mc', text:'Warum ist Rollenklarheit zwischen Schulsozialarbeit und Lehrkräften besonders wichtig?', options:['Weil Schulsozialarbeit weisungsgebunden gegenüber der Lehrkraft ist.','Weil sie verhindert, dass Schulsozialarbeit für schulische Kontroll- und Disziplinierungsaufgaben instrumentalisiert wird.','Weil Lehrkräfte keinen Zugang zu Informationen der Schulsozialarbeit haben dürfen.','Weil nur durch klare Rollen die Schulleitung entlastet wird.'], correct:1, fb:'Klare Rollen schützen das Vertrauensverhältnis zu Schülerinnen und Schülern. Wenn Kinder befürchten, dass Schulsozialarbeit im Auftrag der Schule agiert, nutzen sie das Angebot nicht.' }
 ];
 
 const ERROR_ANALYSIS_ITEMS = [
@@ -1823,8 +1832,23 @@ function zwischenspeichern() {
   const emailEl = document.getElementById('learnerEmail');
   if (emailEl && !emailEl.checkValidity()) {
     statusEl.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
-    statusEl.className = 'status-field show sf-warn';
+    statusEl.className = 'header-status show sf-warn';
     emailEl.focus();
+    return;
+  }
+
+  const privacyConfirmEl = document.getElementById('privacyConfirm');
+  const sendConsentEl = document.getElementById('sendConsent');
+  if (!privacyConfirmEl?.checked) {
+    statusEl.textContent = '⚠️ Bitte bestätigen Sie, dass keine identifizierenden Falldaten enthalten sind.';
+    statusEl.className = 'header-status show sf-warn';
+    privacyConfirmEl?.focus();
+    return;
+  }
+  if (!sendConsentEl?.checked) {
+    statusEl.textContent = '⚠️ Bitte stimmen Sie der Online-Übermittlung zu.';
+    statusEl.className = 'header-status show sf-warn';
+    sendConsentEl?.focus();
     return;
   }
 
@@ -1855,6 +1879,8 @@ function zwischenspeichern() {
     privacyCaseAnswers: JSON.stringify(privacyCaseAnswers),
     reflectionAnswers: JSON.stringify(reflectionAnswers),
     finalCompetenceSelfAssessment: JSON.stringify(kompetenzAnswers),
+    privacyConfirmed: !!document.getElementById('privacyConfirm')?.checked,
+    sendConsent: !!document.getElementById('sendConsent')?.checked,
     localSavedAt: new Date().toISOString(),
     userAgent: navigator.userAgent
   };
